@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Search {% endblock %}
+
+{% block body %}
+    <h1>Parts</h1>
+
+    <table class="table">
+        <tbody>
+        {% for part in parts %}
+        <tr>
+            <th>Id</th>
+            <td>{{ part.id }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ part.title }}</td>
+        </tr>
+        <tr>
+            <th>Styles</th>
+            <td>{{ part.styles }}</td>
+        </tr>
+        <tr>
+            <th>Type</th>
+            <td>{{ part.type }}</td>
+        </tr>
+        <tr>
+            <th>Pictures</th>
+            <td>{{ part.pictures }}</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+
+{% endblock %}

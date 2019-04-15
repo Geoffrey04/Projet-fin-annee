@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    {% block stylesheets %}<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">{% endblock %}
+</head>
+<body>
+
+<header>
+    <h1>Drums & Co</h1>
+    <div class="account_manager">
+        <div class="link_account">
+        <a href="{{ path('security_connexion') }}">Connexion</a>
+        <a href="{{ path('registration_user') }}">Inscription</a>
+        <a href="{{ path('logout_user') }}">Déconnexion</a>
+        </div>
+    </div>
+
+    <nav>
+        <!--    <span>| | |</span>   ( menu hamburger -> + tard ) -->
+
+        <a href="{{ path('parts_index') }}" class="main_link">Accueil</a>
+
+                <div class="Parts_secondaryMenu">
+                <a href="" class="main_link">Morceaux</a>
+                    <div class="under_category">
+                        <a href="{{ path('parts_new') }}">Ajouter</a>
+                        <a href="{{ path('parts_index') }}">Rechercher</a>
+                    </div>
+                </div>
+
+
+
+                <div class="Profile_secondaryMenu">
+                <a href="" class="main_link">Profil</a>
+                    <div class="under_category">
+                        <a href="">Editer</a>
+                        <a href="{{ path('user_profile') }}">Voir</a>
+                    </div>
+                </div>
+
+
+            <a href="{{ path('users_index') }}" class="main_link">Chercher Membres</a>
+
+    </nav>
+</header>
+
+
+{% block body %}
+{% endblock %}
+
+<footer>
+    <p>Some contains in footer of this page like blablabla</p>
+</footer>
+
+{% block javascripts %}{% endblock %}
+</body>
+</html>

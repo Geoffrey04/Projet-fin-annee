@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Avatar/Photo.profil</th>
+            <th>Nom/pseudo</th>
+            <th>Ville</th>
+            <th>Age</th>
+            <th>Styles</th>
+            <th>influences(artistes,groupes)</th>
+
+
+        </tr>
+        </thead>
+
+        <tbody>
+                <h4>Profil</h4>
+        <tr>
+            <td><img class="img_avatar" src="{{ users.avatar }}"></td>
+            <td>{{ users.username }}</td>
+            <td>{{ users.city }}</td>
+            <td>{{ users.age }}</td>
+            <td>{{ users.styles }}</td>
+            <td>{{ users.influences }}</td>
+
+        </tr>
+        </tbody>
+
+    </table>
+
+
+    <table class="table">
+        <tbody>
+                <h4>Liste des morceaux </h4>
+        <tr>
+            {% for part in parts %}
+            <th>Id</th>
+            <td>{{ part.id }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ part.title }}</td>
+        </tr>
+        <tr>
+            <th>Styles</th>
+            <td>{{ part.styles }}</td>
+        </tr>
+        <tr>
+            <th>Type</th>
+            <td>{{ part.type }}</td>
+        </tr>
+        <tr>
+            <th>Auteur de l'ajout</th>
+            <td>{{ part.author }}</td>
+        </tr>
+        <tr>
+            <th>Pictures</th>
+            <td>{{ part.pictures }}</td>
+            {% endfor %}
+        </tr>
+        </tbody>
+    </table>
+
+
+
+
+
+{% endblock %}
