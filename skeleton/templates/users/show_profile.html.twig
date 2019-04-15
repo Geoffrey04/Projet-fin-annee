@@ -36,8 +36,9 @@
     <table class="table">
         <tbody>
                 <h4>Liste des morceaux </h4>
-        <tr>
-            {% for part in parts %}
+                {% for part in parts %}
+        <tr style="margin: 5px">
+
             <th>Id</th>
             <td>{{ part.id }}</td>
         </tr>
@@ -60,10 +61,20 @@
         <tr>
             <th>Pictures</th>
             <td>{{ part.pictures }}</td>
-            {% endfor %}
+
         </tr>
+        <tr>
+            <th>Edit</th>
+            <td><a href="{{ path('parts_edit', {'id': part.id}) }}">edit</a></td>
+        </tr>
+
+
+        {% endfor %}
         </tbody>
     </table>
+
+
+
 
 
 

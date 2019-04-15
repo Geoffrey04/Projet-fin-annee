@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Parts;
+use App\Entity\Users;
 use App\Form\PartsType;
 use App\Repository\PartsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,6 +23,7 @@ class PartsController extends AbstractController
     {
         return $this->render('parts/index.html.twig', [
             'parts' => $partsRepository->findAll(),
+            'user' => $this->getUser(),
         ]);
     }
 
@@ -47,6 +49,7 @@ class PartsController extends AbstractController
         return $this->render('parts/new.html.twig', [
             'part' => $part,
             'form' => $form->createView(),
+            'user' => $this->getUser(),
         ]);
     }
 
@@ -57,6 +60,7 @@ class PartsController extends AbstractController
     {
         return $this->render('parts/show.html.twig', [
             'part' => $part,
+            'user' => $this->getUser(),
         ]);
     }
 
@@ -79,6 +83,7 @@ class PartsController extends AbstractController
         return $this->render('parts/edit.html.twig', [
             'part' => $part,
             'form' => $form->createView(),
+            'user' => $this->getUser(),
         ]);
     }
 

@@ -24,7 +24,8 @@ class UsersController extends AbstractController
 
         return $this->render('users/index.html.twig', [
             'controller_name' => 'UsersController',
-            'users' => $usersRepository->findAll()
+            'users' => $usersRepository->findAll(),
+            'user' => $this->getUser(),
         ]);
     }
 
@@ -111,10 +112,37 @@ class UsersController extends AbstractController
 
         return $this->render('users/show_profile.html.twig',
             ['users' => $this->getUser(),
+                'user' => $this->getUser(),
               'parts' => $partsRepository->findBy(
                   ["author"=> $this->getUser()->getId()]
               )  ]);
 
+    }
+
+    /**
+     * @Route("/{id}/edit_profile", name="edit_urprofile" , methods={"GET" , "POST"})
+     *
+     */
+    public function edit_profile(Request $request, Users $user) : Response
+    {
+
+        dump($user);
+        $form = $this->createForm(UsersType::class, $user);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('parts_index', [
+                'id' => $this->getUser()->getId(),
+            ]);
+
+        }
+        return $this->render('users/edit.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
     }
 
 

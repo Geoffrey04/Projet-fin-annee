@@ -26,8 +26,10 @@
                 <div class="Parts_secondaryMenu">
                 <a href="" class="main_link">Morceaux</a>
                     <div class="under_category">
+                        {% if app.user %}
                         <a href="{{ path('parts_new') }}">Ajouter</a>
                         <a href="{{ path('parts_index') }}">Rechercher</a>
+                        {% endif %}
                     </div>
                 </div>
 
@@ -36,8 +38,10 @@
                 <div class="Profile_secondaryMenu">
                 <a href="" class="main_link">Profil</a>
                     <div class="under_category">
-                        <a href="">Editer</a>
+                        {% if app.user %}
+                        <a href="{{ path('edit_urprofile', {'id' : user.id}) }}">Editer</a>
                         <a href="{{ path('user_profile') }}">Voir</a>
+                        {% endif %}
                     </div>
                 </div>
 
@@ -55,6 +59,6 @@
     <p>Some contains in footer of this page like blablabla</p>
 </footer>
 
-{% block javascripts %}{% endblock %}
+{% block javascripts %}<script  src="{{ asset('js/app.js') }}"></script>{% endblock %}
 </body>
 </html>

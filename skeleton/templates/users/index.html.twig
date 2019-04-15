@@ -18,10 +18,18 @@
     </ul>
 </div>#}
     <div class="search_profiles" style="border: 1px solid black;">
-        <h2>Recherche</h2>
-        <input type="search"  name="q"
-               aria-label="Search through site content">
+        <h2 id="title_r">Recherche</h2>
+
+
+        <input type="search"  name="q" id="search_name" onkeyup="search_name()"
+               aria-label="Search through site content" placeholder="nom/pseudo">
+        <input type="search"  name="q" id="search_style"
+               aria-label="Search through site content" placeholder="Style(Rock, Jazz , etc ...">
+        <input type="search"  name="q" id="search_influence"
+               aria-label="Search through site content" placeholder="Influence(Chanteur, groupe, etc...">
         <button type="submit">Chercher</button>
+
+
     </div>
 
     <table class="table">
@@ -40,9 +48,9 @@
 
         <tbody>
         {% for user in users %}
-            <tr>
+            <tr id="Mytr" style="">
                 <td><img class="img_avatar" src="{{ user.avatar }}"></td>
-                <td>{{ user.username }}</td>
+                <td class="js-search-nom"><a href="#">{{ user.username }}</a></td>
                 <td>{{ user.city }}</td>
                 <td>{{ user.age }}</td>
                 <td>{{ user.styles }}</td>
@@ -53,4 +61,7 @@
 
     </table>
 
+{% endblock %}
+{% block javascripts %}
+    <script  src="{{ asset('js/app.js') }}"></script>
 {% endblock %}
