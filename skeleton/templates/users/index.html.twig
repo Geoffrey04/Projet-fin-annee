@@ -16,8 +16,15 @@
         <li>Your controller at <code><a href="{{ 'C:/Users/Geoffrey/PhpstormProjects/ProjetPerso_n-3/skeleton/src/Controller/UsersController.php'|file_link(0) }}">src/Controller/UsersController.php</a></code></li>
         <li>Your template at <code><a href="{{ 'C:/Users/Geoffrey/PhpstormProjects/ProjetPerso_n-3/skeleton/templates/users/index.html.twig'|file_link(0) }}">templates/users/index.html.twig</a></code></li>
     </ul>
-</div>#}
-    <div class="search_profiles" style="border: 1px solid black;">
+</div>
+ //
+ //
+ //
+
+
+        // input html pour la recherche
+
+
         <h2 id="title_r">Recherche</h2>
 
 
@@ -29,8 +36,18 @@
                aria-label="Search through site content" placeholder="Influence(Chanteur, groupe, etc...">
         <button type="submit">Chercher</button>
 
+            #}
 
+    <div class="search_profiles" style="border: 1px solid black;">
+        {{ form_start(form) }}
+        {{ form_row(form.username) }}
+        {{ form_row(form.styles) }}
+        {{ form_row(form.influences) }}
+        <button>Rechercher</button>
+        {{ form_end(form) }}
     </div>
+
+
 
     <table class="table">
         <thead>

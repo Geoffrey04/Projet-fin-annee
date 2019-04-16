@@ -1,4 +1,4 @@
-var input_style = document.getElementById('search_style');
+/* var input_style = document.getElementById('search_style');
 var input_influence = document.getElementById('search_influence');
 
 
@@ -24,7 +24,7 @@ function search_name() {
             }
     }
 
-}
+} */
 
 
-document.getElementById('title_r').style.backgroundColor="red";
+

@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Parts;
+
+use App\Entity\SearchUser;
 use App\Entity\Users;
+use App\Form\SearchUserType;
 use App\Form\UsersType;
 use App\Repository\PartsRepository;
 use App\Repository\UsersRepository;
@@ -26,6 +28,7 @@ class UsersController extends AbstractController
             'controller_name' => 'UsersController',
             'users' => $usersRepository->findAll(),
             'user' => $this->getUser(),
+
         ]);
     }
 
@@ -55,10 +58,14 @@ class UsersController extends AbstractController
             $EmptyManager->persist($user);
             $EmptyManager->flush();
 
-            return $this->render('users/login.html.twig', ['form' => $form->createView()]);
+            return $this->render('users/login.html.twig',
+                ['form' => $form->createView(),
+                 'user' => $this->getUser(), ]);
         }
 
-        return $this->render('/users/registration.html.twig' , ['form' => $form->createView()]);
+        return $this->render('/users/registration.html.twig' ,
+            ['form' => $form->createView(),
+                'user' => $this->getUser(),]);
     }
 
     /**
@@ -68,7 +75,9 @@ class UsersController extends AbstractController
     {
         $error = $authenticationUtils->getLastAuthenticationError();
 
-        return $this->render('users/login.html.twig', ['error' => $error]);
+        return $this->render('users/login.html.twig',
+            ['error' => $error ,
+                'user' => $this->getUser(),]);
 
     }
 
@@ -126,7 +135,7 @@ class UsersController extends AbstractController
     public function edit_profile(Request $request, Users $user) : Response
     {
 
-        dump($user);
+
         $form = $this->createForm(UsersType::class, $user);
         $form->handleRequest($request);
 
@@ -146,4 +155,52 @@ class UsersController extends AbstractController
     }
 
 
+
+    /**
+     * @Route("/search", name="users_search")
+     */
+    public function search(Request $request,UsersRepository $usersRepository) : Response
+    {
+
+        $search = new SearchUser();
+
+
+        $form = $this->createForm(SearchUserType::class , $search);
+        $form->handleRequest($request);
+        $data = $form->getData();
+
+
+
+
+
+        if($form->isSubmitted())
+        {
+
+            $search->setSearchUsername($data);
+            // $search->setSearchInfluence($data);
+            //$search->setSearchStyle($data);
+
+            $users = $usersRepository->FindUserBy($search)->getResult();
+        }
+        else {
+
+            $users = $usersRepository->FindAll();
+        }
+
+        return $this->render('users/search.html.twig', [
+            'controller_name' => 'UsersController',
+            'users' => $users,
+            'user' => $this->getUser(),
+            'form' => $form->createView(),
+
+        ]);
+    }
+
+
+
+
 }
+
+
+
+

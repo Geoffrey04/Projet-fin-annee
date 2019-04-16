@@ -2,8 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\SearchUser;
 use App\Entity\Users;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -45,6 +47,41 @@ class UsersRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult()
         ;
+    } */
+
+    /**
+     * @param SearchUser $searchUser
+     * @return Query
+     */
+    public function FindUserBy(SearchUser $searchUser) : Query
+    {
+        $query = $this->createQueryBuilder('a');
+
+
+        if($searchUser->getSearchUsername())
+        {
+            $query = $query
+                ->andWhere('a.username like :searchUser')
+                ->setParameter('searchUser', '%'.$searchUser->getSearchUsername().'%');
+        }
+
+        if($searchUser->getSearchInfluence())
+        {
+            $query = $query
+                ->andWhere('a.influences like :searchUser')
+                ->setParameter('searchUser', '%'.$searchUser->getSearchInfluence().'%');
+        }
+
+        if($searchUser->getSearchStyle())
+        {
+            $query = $query
+                ->andWhere('a.styles like :searchUser')
+                ->setParameter('searchUser', '%'.$searchUser->getSearchStyle().'%');
+        }
+        return $query->getQuery();
+
+
+
     }
-    */
+
 }

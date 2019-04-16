@@ -24,7 +24,7 @@
                 <th>Styles</th>
                 <th>Type</th>
                 <th>Pictures</th>
-                <th>actions</th>
+               <!-- <th>actions</th> -->
             </tr>
         </thead>
         <tbody>
@@ -41,10 +41,12 @@
                 {% else  %}
                     <td><img src="/img/tab_acdc.jpg"></td>
                 {% endif %}
-                <td>
-                    <a href="{{ path('parts_show', {'id': part.id}) }}">show</a>
+
+              <!--  <td>
+                   <a href="{{ path('parts_show', {'id': part.id}) }}">show</a>
                     <a href="{{ path('parts_edit', {'id': part.id}) }}">edit</a>
-                </td>
+                </td> -->
+
             </tr>
         {% else %}
             <tr>
@@ -54,5 +56,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('parts_new') }}">Create new</a>
+
 {% endblock %}

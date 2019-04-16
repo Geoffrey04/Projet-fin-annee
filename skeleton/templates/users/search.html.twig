@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rechercher un utilisateur{% endblock %}
+
+{% block body %}
+<div class="search_profiles" style="border: 1px solid black;">
+    {{ form_start(form) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.styles) }}
+    {{ form_row(form.influences) }}
+    <button>Rechercher</button>
+    {{ form_end(form) }}
+
+
+</div>
+
+
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Avatar/Photo.profil</th>
+        <th>Nom/pseudo</th>
+        <th>Ville</th>
+        <th>Age</th>
+        <th>Styles</th>
+        <th>influences(artistes,groupes)</th>
+
+
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for user in users %}
+    <tr id="Mytr" style="">
+        <td><img class="img_avatar" src="{{ user.avatar }}"></td>
+        <td class="js-search-nom"><a href="#">{{ user.username }}</a></td>
+        <td>{{ user.city }}</td>
+        <td>{{ user.age }}</td>
+        <td>{{ user.styles }}</td>
+        <td>{{ user.influences }}</td>
+        {% endfor %}
+    </tr>
+    </tbody>
+
+</table>
+
+{% endblock %}
