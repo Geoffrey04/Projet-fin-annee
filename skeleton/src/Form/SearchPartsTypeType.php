@@ -1,32 +1,41 @@
 <?php
 
+
 namespace App\Form;
 
-use App\Entity\SearchUserInfluences;
-use App\Entity\Users;
+
+use App\Entity\Parts;
+use App\Entity\SearchPartsType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SearchInfluencesType extends AbstractType
+class SearchPartsTypeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('influences' , TextType::class, [
+            ->add('type' , ChoiceType::class, [
                 'required' => false,
                 'label' => false,
                 'attr' =>[
-                    'placeholder'=> 'artiste ou groupe'
-                ]
+                    'placeholder'=> 'type tablature ou partitions'
+                ],
+                'choices'=> [
+        'Tablature' => 'Tablature',
+        'Partition' => 'Partition'
+    ]
             ]);
+
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => SearchUserInfluences::class,
+            'data_class' => SearchPartsType::class,
             'method' => 'get',
             'csrf_protection' => false ,
         ]);

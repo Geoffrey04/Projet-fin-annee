@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 
-use App\Entity\SearchInfluences;
-use App\Entity\SearchStyles;
+use App\Entity\SearchUserInfluences;
+use App\Entity\SearchUserStyles;
 use App\Entity\SearchUsername;
 use App\Entity\Users;
 use App\Form\SearchInfluencesType;
@@ -167,8 +167,8 @@ class UsersController extends AbstractController
     {
 
         $search_u = new SearchUsername();
-        $search_s = new SearchStyles();
-        $search_i = new SearchInfluences();
+        $search_s = new SearchUserStyles();
+        $search_i = new SearchUserInfluences();
 
 
         $SearchFormBy_username = $this->createForm(SearchUsernameType::class , $search_u);
@@ -211,7 +211,7 @@ class UsersController extends AbstractController
         }
         else
         {
-            $users = $usersRepository->FindAll();
+            $users = $usersRepository->findAll();
         }
 
         return $this->render('users/search.html.twig', [

@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 
-class SearchStyles extends Users
+class SearchUserStyles extends Users
 {
     /**
      * @var string | null

@@ -3,7 +3,14 @@
 namespace App\Repository;
 
 use App\Entity\Parts;
+
+use App\Entity\SearchPartsAuthor;
+use App\Entity\SearchPartsGroup;
+use App\Entity\SearchPartsStyles;
+use App\Entity\SearchPartsTitle;
+use App\Entity\SearchPartsType;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -47,4 +54,75 @@ class PartsRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @param SearchPartsTitle $searchPartsTitle
+     * @return Query
+     */
+    public function findPartsByTitle(SearchPartsTitle $searchPartsTitle) : Query
+    {
+        $query = $this->createQueryBuilder('p');
+
+
+        if($searchPartsTitle->getSearchTitle())
+        {
+            $query = $query
+                ->Where('p.title like  :searchTitle')
+                ->setParameter('searchTitle','%' . $searchPartsTitle->getSearchTitle().'%');
+        }
+        return $query->getQuery();
+    }
+
+    public function findPartsByGroup(SearchPartsGroup $searchPartsGroup) : Query
+    {
+        $query = $this->createQueryBuilder('p');
+
+        if($searchPartsGroup->getSearchGroup())
+        {
+            $query = $query
+                ->where('p.Groupe like :searchGroup')
+                ->setParameter('searchGroup', '%'. $searchPartsGroup->getSearchGroup().'%');
+        }
+        return $query->getQuery();
+    }
+
+    public function findPartsByAuthor(SearchPartsAuthor $searchPartsAuthor) :Query
+    {
+        $query = $this->createQueryBuilder('p');
+
+        if($searchPartsAuthor->getSearchAuthor())
+        {
+            $query = $query
+                ->where('IDENTITY(p.author) = :searchAuthor')
+                ->setParameter('searchAuthor', $searchPartsAuthor->getSearchAuthor());
+        }
+        return $query->getQuery();
+    }
+
+    public function findPartsByStyles(SearchPartsStyles $searchPartsStyles) : Query
+    {
+        $query = $this->createQueryBuilder('p');
+
+        if($searchPartsStyles->getSearchStyles())
+        {
+            $query = $query
+                ->where('p.styles like :searchStyles')
+                ->setParameter('searchStyles','%'. $searchPartsStyles->getSearchStyles(). '%');
+        }
+        return $query->getQuery();
+    }
+
+    public function findPartsByType(SearchPartsType $searchPartsType ) : Query
+    {
+        $query = $this->createQueryBuilder('p');
+
+        if($searchPartsType->getSearchType())
+        {
+            $query = $query
+                ->where('p.type  like :searchType' )
+                ->setParameter('searchType', $searchPartsType->getSearchType());
+
+        }
+        return $query->getQuery();
+    }
 }

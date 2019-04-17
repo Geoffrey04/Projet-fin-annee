@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\SearchStyles;
+use App\Entity\SearchUserStyles;
 use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -29,7 +29,7 @@ class SearchStylesType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => SearchStyles::class,
+            'data_class' => SearchUserStyles::class,
             'method' => 'get',
             'csrf_protection' => false ,
         ]);

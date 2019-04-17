@@ -1,32 +1,35 @@
 <?php
 
+
 namespace App\Form;
 
-use App\Entity\SearchUserInfluences;
-use App\Entity\Users;
+
+use App\Entity\SearchPartsGroup;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SearchInfluencesType extends AbstractType
+class SearchPartsGroupType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('influences' , TextType::class, [
+            ->add('groupe' , TextType::class, [
                 'required' => false,
                 'label' => false,
                 'attr' =>[
-                    'placeholder'=> 'artiste ou groupe'
+                    'placeholder'=> "Nom de l'artiste ou du groupe"
                 ]
             ]);
+
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => SearchUserInfluences::class,
+            'data_class' => SearchPartsGroup::class,
             'method' => 'get',
             'csrf_protection' => false ,
         ]);

@@ -6,7 +6,7 @@ namespace App\Entity;
 
 
 
-class SearchInfluences extends Users
+class SearchUserInfluences extends Users
 {
 
     /**

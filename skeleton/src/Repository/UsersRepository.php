@@ -2,8 +2,8 @@
 
 namespace App\Repository;
 
-use App\Entity\SearchInfluences;
-use App\Entity\SearchStyles;
+use App\Entity\SearchUserInfluences;
+use App\Entity\SearchUserStyles;
 use App\Entity\SearchUsername;
 use App\Entity\Users;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -70,10 +70,10 @@ class UsersRepository extends ServiceEntityRepository
 
 
     /**
-     * @param SearchInfluences $searchInfluences
+     * @param SearchUserInfluences $searchInfluences
      * @return Query
      */
-    public function FindUserByInfluences(SearchInfluences $searchInfluences) : Query
+    public function FindUserByInfluences(SearchUserInfluences $searchInfluences) : Query
     {
         $query = $this->createQueryBuilder('a');
 
@@ -89,10 +89,10 @@ class UsersRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param SearchStyles $searchStyles
+     * @param SearchUserStyles $searchStyles
      * @return Query
      */
-    public function FindUserByStyles(SearchStyles $searchStyles) : Query
+    public function FindUserByStyles(SearchUserStyles $searchStyles) : Query
     {
         $query = $this->createQueryBuilder('a');
 

@@ -3,7 +3,35 @@
 {% block title %} Search {% endblock %}
 
 {% block body %}
-    <h1>Parts</h1>
+    <h1>Chercher un morceau</h1>
+
+    <div clas="search_parts" style="border: 1px solid black">
+        {{ form_start(form_T) }}
+        {{ form_row(form_T.title) }}
+        <button>Chercher</button>
+        {{ form_end(form_T) }}
+
+        {{ form_start(form_G) }}
+        {{ form_row(form_G.groupe) }}
+        <button>Chercher</button>
+        {{ form_end(form_G) }}
+
+        {{ form_start(form_A) }}
+        {{ form_row(form_A.author) }}
+        <button>Chercher</button>
+        {{ form_end(form_A) }}
+
+        {{ form_start(form_S) }}
+        {{ form_row(form_S.styles) }}
+        <button>Chercher</button>
+        {{ form_end(form_S) }}
+
+
+        {{ form_start(form_Type) }}
+        {{ form_row(form_Type.type) }}
+        <button>Chercher</button>
+        {{ form_end(form_Type) }}
+    </div>
 
     <table class="table">
         <tbody>
@@ -13,11 +41,19 @@
             <td>{{ part.id }}</td>
         </tr>
         <tr>
-            <th>Title</th>
+            <th>Titre</th>
             <td>{{ part.title }}</td>
         </tr>
         <tr>
-            <th>Styles</th>
+             <th>Artiste/Groupe</th>
+             <td>{{ part.groupe }}</td>
+        </tr>
+         <tr>
+            <th>Auteur</th>
+            <td>{{ part.author }}</td>
+         </tr>
+        <tr>
+            <th>Style</th>
             <td>{{ part.styles }}</td>
         </tr>
         <tr>
@@ -25,10 +61,10 @@
             <td>{{ part.type }}</td>
         </tr>
         <tr>
-            <th>Pictures</th>
-            <td>{{ part.pictures }}</td>
+            <th>Image</th>
+            <td><img src="{{ part.pictures }}"></td>
         </tr>
-        {% endif %}
+        {% endfor %}
         </tbody>
     </table>
 
