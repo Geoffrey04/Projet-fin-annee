@@ -4,12 +4,22 @@
 
 {% block body %}
 <div class="search_profiles" style="border: 1px solid black;">
-    {{ form_start(form) }}
-    {{ form_row(form.username) }}
-    {{ form_row(form.styles) }}
-    {{ form_row(form.influences) }}
+    {{ form_start(form_U) }}
+    {{ form_row(form_U.username) }}
     <button>Rechercher</button>
-    {{ form_end(form) }}
+    {{ form_end(form_U) }}
+
+    {{ form_start(form_S) }}
+    {{ form_row(form_S.styles) }}
+    <button>Rechercher</button>
+    {{ form_end(form_S) }}
+
+    {{ form_start(form_I) }}
+    {{ form_row(form_I.influences) }}
+    <button>Rechercher</button>
+    {{ form_end(form_I) }}
+
+
 
 
 </div>

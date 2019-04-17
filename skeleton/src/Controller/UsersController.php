@@ -3,9 +3,13 @@
 namespace App\Controller;
 
 
-use App\Entity\SearchUser;
+use App\Entity\SearchInfluences;
+use App\Entity\SearchStyles;
+use App\Entity\SearchUsername;
 use App\Entity\Users;
-use App\Form\SearchUserType;
+use App\Form\SearchInfluencesType;
+use App\Form\SearchStylesType;
+use App\Form\SearchUsernameType;
 use App\Form\UsersType;
 use App\Repository\PartsRepository;
 use App\Repository\UsersRepository;
@@ -162,28 +166,51 @@ class UsersController extends AbstractController
     public function search(Request $request,UsersRepository $usersRepository) : Response
     {
 
-        $search = new SearchUser();
+        $search_u = new SearchUsername();
+        $search_s = new SearchStyles();
+        $search_i = new SearchInfluences();
 
 
-        $form = $this->createForm(SearchUserType::class , $search);
-        $form->handleRequest($request);
-        $data = $form->getData();
+        $SearchFormBy_username = $this->createForm(SearchUsernameType::class , $search_u);
+        $SearchFormBy_username->handleRequest($request);
+        $data = $SearchFormBy_username->getData();
+        //dump($data);
+
+        $SearchFormBy_style = $this->createForm(SearchStylesType::class, $search_s);
+        $SearchFormBy_style->handleRequest($request);
+        $data2 = $SearchFormBy_style->getData();
+
+        //dump($data2);
+
+        $SearchFormBy_influences = $this->createForm(SearchInfluencesType::class, $search_i);
+        $SearchFormBy_influences->handleRequest($request);
+        $data3 = $SearchFormBy_influences->getData();
+       // dump($data3);
 
 
 
 
 
-        if($form->isSubmitted())
+        if($SearchFormBy_username->isSubmitted())
+        {
+            //dump($data);
+            $search_u->setSearchUsername($data);
+            //dump($data);
+            $users = $usersRepository->FindUserByName($search_u)->getResult();
+        }
+        elseif($SearchFormBy_style->isSubmitted())
         {
 
-            $search->setSearchUsername($data);
-            // $search->setSearchInfluence($data);
-            //$search->setSearchStyle($data);
-
-            $users = $usersRepository->FindUserBy($search)->getResult();
+            $search_s->setSearchStyle($data2->getStyles());
+            $users = $usersRepository->FindUserByStyles($search_s)->getResult();
         }
-        else {
-
+        elseif($SearchFormBy_influences->isSubmitted())
+        {
+            $search_i->setSearchInfluence($data3->getInfluences());
+            $users = $usersRepository->FindUserByInfluences($search_i)->getResult();
+        }
+        else
+        {
             $users = $usersRepository->FindAll();
         }
 
@@ -191,7 +218,9 @@ class UsersController extends AbstractController
             'controller_name' => 'UsersController',
             'users' => $users,
             'user' => $this->getUser(),
-            'form' => $form->createView(),
+            'form_U' => $SearchFormBy_username->createView(),
+            'form_S' => $SearchFormBy_style->createView(),
+            'form_I' => $SearchFormBy_influences->createView(),
 
         ]);
     }

@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
-use App\Entity\SearchUser;
+use App\Entity\SearchInfluences;
+use App\Entity\SearchStyles;
+use App\Entity\SearchUsername;
 use App\Entity\Users;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
@@ -50,38 +52,66 @@ class UsersRepository extends ServiceEntityRepository
     } */
 
     /**
-     * @param SearchUser $searchUser
+     * @param SearchUsername $searchUser
      * @return Query
      */
-    public function FindUserBy(SearchUser $searchUser) : Query
+    public function FindUserByName(SearchUsername $searchUser) : Query
     {
         $query = $this->createQueryBuilder('a');
 
 
-        if($searchUser->getSearchUsername())
-        {
+        if ($searchUser->getSearchUsername()) {
             $query = $query
-                ->andWhere('a.username like :searchUser')
-                ->setParameter('searchUser', '%'.$searchUser->getSearchUsername().'%');
-        }
-
-        if($searchUser->getSearchInfluence())
-        {
-            $query = $query
-                ->andWhere('a.influences like :searchUser')
-                ->setParameter('searchUser', '%'.$searchUser->getSearchInfluence().'%');
-        }
-
-        if($searchUser->getSearchStyle())
-        {
-            $query = $query
-                ->andWhere('a.styles like :searchUser')
-                ->setParameter('searchUser', '%'.$searchUser->getSearchStyle().'%');
+                ->Where('a.username like :searchUser')
+                ->setParameter('searchUser', '%' . $searchUser->getSearchUsername() . '%');
         }
         return $query->getQuery();
-
-
-
     }
 
-}
+
+    /**
+     * @param SearchInfluences $searchInfluences
+     * @return Query
+     */
+    public function FindUserByInfluences(SearchInfluences $searchInfluences) : Query
+    {
+        $query = $this->createQueryBuilder('a');
+
+
+        if ($searchInfluences->getSearchInfluence())
+        {
+            $query = $query
+                ->Where('a.influences like :searchUser')
+                ->setParameter('searchUser', '%' . $searchInfluences->getSearchInfluence() . '%');
+
+        }
+        return $query->getQuery();
+    }
+
+    /**
+     * @param SearchStyles $searchStyles
+     * @return Query
+     */
+    public function FindUserByStyles(SearchStyles $searchStyles) : Query
+    {
+        $query = $this->createQueryBuilder('a');
+
+
+        if($searchStyles->getSearchStyle())
+        {
+            $query = $query
+                ->Where('a.styles like :searchUser')
+                ->setParameter('searchUser', '%'.$searchStyles->getSearchStyle().'%');
+        }
+        return $query->getQuery();
+    }
+
+
+        }
+
+
+
+
+
+
+
