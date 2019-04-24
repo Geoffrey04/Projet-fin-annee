@@ -20,8 +20,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+
 class UsersController extends AbstractController
 {
+    const AVATAR_DIRECTORY = "img/avatar_directory";
+
     /**
      * @Route("/users", name="users_index")
      */
@@ -55,6 +58,33 @@ class UsersController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
+
+            $avatar_img = $form->get('avatar')->getData();
+
+            // condition si le champ avatar_img est vide ,mettre l'image 'profil_default' par défaut :
+
+            if($_FILES['users']['name']['avatar'] == "")
+            {
+
+
+                $user->setAvatar('profil_default.png');
+
+            }
+            else {
+
+                $avatar_name = $this->generateUniqueFileName();
+                $avatar_img->move(self::AVATAR_DIRECTORY, $avatar_name.".png");
+                $user->setAvatar($avatar_name.".png");
+
+
+            }
+
+
+
+
+
+
+
             $encod = $encoder->encodePassword($user, $user->getPassword());
             $user->setRoles('ROLE_USER');
             $user->setPassword($encod);
@@ -107,27 +137,32 @@ class UsersController extends AbstractController
 
         if (true == $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
         {
-            return $this->redirectToRoute('parts_index');
+            return $this->redirectToRoute('users_search');
         }
 
         else {
-            return $this->redirectToRoute('parts_index');
+            return $this->redirectToRoute('registration_user');
+
         }
     }
 
 
     /**
      * @return Response
-     * @Route("/show_profile" , name="user_profile" , methods={"GET"})
+     * @Route("/profile/{id}/show_profile" , name="user_profile" , methods={"GET"})
      */
-    public function profile_user(PartsRepository $partsRepository) : Response
+    public function profile_user($id ,PartsRepository $partsRepository, UsersRepository $usersRepository) : Response
     {
 
+
+        $user = $usersRepository->find($id);
+
         return $this->render('users/show_profile.html.twig',
-            ['users' => $this->getUser(),
-                'user' => $this->getUser(),
-              'parts' => $partsRepository->findBy(
-                  ["author"=> $this->getUser()->getId()]
+            ['users' => $user,
+             'user' => $this->getUser(),
+             'id_user' => $id ,
+             'parts' => $partsRepository->findBy(
+                  ["author"=> $user]
               )  ]);
 
     }
@@ -136,15 +171,45 @@ class UsersController extends AbstractController
      * @Route("/{id}/edit_profile", name="edit_urprofile" , methods={"GET" , "POST"})
      *
      */
-    public function edit_profile(Request $request, Users $user) : Response
+    public function edit_profile(Request $request, Users $user , UserPasswordEncoderInterface $encoder) : Response
     {
+
+
+        $avatarUser = $user->getAvatar() ;
+        $user->setAvatar('');
 
 
         $form = $this->createForm(UsersType::class, $user);
         $form->handleRequest($request);
 
+
         if($form->isSubmitted() && $form->isValid())
         {
+            $avatar_img = $form->get('avatar')->getData();
+
+
+            if($_FILES['users']['name']['avatar'] == "")
+            {
+
+                $user->setAvatar($avatarUser);
+
+            }
+            else {
+
+                $avatar_name = $this->generateUniqueFileName();
+                $avatar_img->move(self::AVATAR_DIRECTORY, $avatar_name.".png");
+                $user->setAvatar($avatar_name.".png");
+
+
+            }
+
+
+
+
+
+            $encod = $encoder->encodePassword($user, $user->getPassword());
+            $user->setRoles('ROLE_USER');
+            $user->setPassword($encod);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('parts_index', [
@@ -171,7 +236,9 @@ class UsersController extends AbstractController
         $search_i = new SearchUserInfluences();
 
 
-        $SearchFormBy_username = $this->createForm(SearchUsernameType::class , $search_u);
+
+
+        $SearchFormBy_username = $this->createForm(SearchUsernameType::class ,$search_u);
         $SearchFormBy_username->handleRequest($request);
         $data = $SearchFormBy_username->getData();
         //dump($data);
@@ -193,23 +260,56 @@ class UsersController extends AbstractController
 
         if($SearchFormBy_username->isSubmitted())
         {
-            //dump($data);
-            $search_u->setSearchUsername($data);
-            //dump($data);
-            $users = $usersRepository->FindUserByName($search_u)->getResult();
-        }
-        elseif($SearchFormBy_style->isSubmitted())
-        {
 
-            $search_s->setSearchStyle($data2->getStyles());
-            $users = $usersRepository->FindUserByStyles($search_s)->getResult();
+           // $search_u->setSearchUsername($data->getUsername());
+            ////$users = $usersRepository->FindUserByName($search_u)->getResult();
+
+            if($data->getUsername()) {
+                $search_u->setSearchUsername($data->getUsername());
+
+                $users = $usersRepository->FindUserByName($search_u)->getResult();
+
+                if (!empty($users)) {
+                    $users = array_merge($users);
+                }
+
+            }
         }
-        elseif($SearchFormBy_influences->isSubmitted())
+        if($SearchFormBy_style->isSubmitted())
         {
-            $search_i->setSearchInfluence($data3->getInfluences());
-            $users = $usersRepository->FindUserByInfluences($search_i)->getResult();
+            if($data2->getStyles()) {
+                $search_s->setSearchStyle($data2->getStyles());
+
+                $users = $usersRepository->FindUserByStyles($search_s)->getResult();
+
+                if (!empty($users)) {
+                    $users = array_merge($users);
+                }
+
+            }
+
         }
-        else
+
+
+        if($SearchFormBy_influences->isSubmitted())
+        {
+           // $search_i->setSearchInfluence($data3->getInfluences());
+           // $users = $usersRepository->FindUserByInfluences($search_i)->getResult();
+
+            if($data3->getInfluences()) {
+                $search_i->setSearchInfluence($data3->getInfluences());
+
+                $users = $usersRepository->FindUserByInfluences($search_i)->getResult();
+
+                if (!empty($users)) {
+                    $users = array_merge($users);
+                }
+
+            }
+
+        }
+
+        if(!$SearchFormBy_influences->isSubmitted() and !$SearchFormBy_style->isSubmitted() and !$SearchFormBy_username->isSubmitted())
         {
             $users = $usersRepository->findAll();
         }
@@ -225,7 +325,10 @@ class UsersController extends AbstractController
         ]);
     }
 
-
+    private function generateUniqueFileName()
+    {
+        return md5(uniqid());
+    }
 
 
 }

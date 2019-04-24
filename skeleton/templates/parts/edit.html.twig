@@ -5,7 +5,30 @@
 {% block body %}
     <h1>Edit Parts</h1>
 
-    {{ include('parts/_form.html.twig', {'button_label': 'Update'}) }}
+    {% if app.user %}
+        {{ form_start(form) }}
+
+        {{ form_row(form.title, {'label': 'titre', 'attr':
+            {'placeholder': 'titre de la musique...'}}) }}
+
+        {{ form_row(form.Groupe, {'label': 'groupe', 'attr':
+            {'placeholder': 'Nom du chanteur ou groupe...'}}) }}
+
+        {{ form_row(form.styles, {'label': 'style', 'attr':
+            {'placeholder': 'style de musique...'}}) }}
+
+        {{ form_row(form.type , {'label': 'type', 'attr':
+            {'placeholder': 'Type de morceau...'}}) }}
+
+        {{ form_row(form.pictures, {'label': 'pictures', 'attr':
+            {'placeholder': 'image...'}}) }}
+
+        <button type="submit">Envoyez</button>
+
+        {{ form_end(form) }}
+        <a href="{{ path('parts_index') }}">back to list</a>
+
+    {% endif %}
 
     <a href="{{ path('parts_index') }}">back to list</a>
 

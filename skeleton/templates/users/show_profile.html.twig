@@ -20,7 +20,7 @@
         <tbody>
                 <h4>Profil</h4>
         <tr>
-            <td><img class="img_avatar" src="{{ users.avatar }}"></td>
+            <td><img class="img_avatar" src="../../img/avatar_directory/{{ users.avatar }}"></td>
             <td>{{ users.username }}</td>
             <td>{{ users.city }}</td>
             <td>{{ users.age }}</td>
@@ -60,12 +60,15 @@
         </tr>
         <tr>
             <th>Pictures</th>
-            <td>{{ part.pictures }}</td>
-
+            <td><a href="../../img/sheetmusic_directory/{{ part.pictures }}" data-lightbox="img_profile" data-title="img_UserProfile"><img alt="PartsPicturesProfile" src="../../img/sheetmusic_directory/{{ part.pictures }}"></a></td>
+            <td><a href="/img/sheetmusic_directory/{{ part.pictures }}" download="{{ part.title }}-{{ part.groupe }}_by{{ part.author }}">Telecharger</a></td>
         </tr>
         <tr>
+            {% if app.user.id ==  id_user  %}
             <th>Edit</th>
             <td><a href="{{ path('parts_edit', {'id': part.id}) }}">edit</a></td>
+            <td>{{ include('parts/_delete_form.html.twig') }}</td>
+            {% endif %}
         </tr>
 
 

@@ -3,12 +3,16 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
+ * @UniqueEntity("mail")
+ * @UniqueEntity("username", message="Le pseudo est déjà utilisé !Veuillez en choisir un autre")
  */
 class Users implements UserInterface , PasswordEncoderInterface
 {
@@ -30,7 +34,15 @@ class Users implements UserInterface , PasswordEncoderInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Assert\EqualTo(propertyPath="password", message="erreur , les 2 mots de passe sont différents")
+     * @Assert\Length(min= 5, minMessage="Votre mot de passe doit contenir  {{ limit }} caractères")
+     */
+    public $confirm_password;
+
+    /**
+     * @Assert\Email()
+     * @ORM\Column(type="string", length=255, unique=true)
+     *
      */
     private $mail;
 

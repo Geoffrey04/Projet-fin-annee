@@ -25,6 +25,8 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PartsController extends AbstractController
 {
+
+    const SHEETMUSIC_DIRECTORY = "img/sheetmusic_directory";
     /**
      * @Route("/", name="parts_index", methods={"GET"})
      */
@@ -47,6 +49,14 @@ class PartsController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $sheet_music = $form->get('pictures')->getData();
+            //dump($sheet_music);
+
+            $nameSheetMusic = $this->generateUniqueFileName();
+
+            $sheet_music->move(self::SHEETMUSIC_DIRECTORY, $nameSheetMusic.'.png' );
+            $part->setPictures($sheet_music);
+
             $part->setAuthor($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($part);
@@ -78,10 +88,30 @@ class PartsController extends AbstractController
      */
     public function edit(Request $request, Parts $part): Response
     {
+        $partUser = $part->getPictures();
+        $part->setPictures('');
+
+
         $form = $this->createForm(PartsType::class, $part);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $sheet_music = $form->get('pictures')->getData();
+
+            if($_FILES['parts']['name']['pictures'] == "")
+            {
+                $part->setPictures($partUser);
+
+            }else
+            {
+                $nameSheetMusic = $this->generateUniqueFileName();
+                $sheet_music->move(self::SHEETMUSIC_DIRECTORY, $nameSheetMusic . ".png" );
+                $part->setPictures($nameSheetMusic.'.png');
+            }
+
+
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('parts_index', [
@@ -137,6 +167,7 @@ class PartsController extends AbstractController
         $SearchFormBy_Author = $this->createForm(SearchPartsAuthorType::class, $search_a);
         $SearchFormBy_Author->handleRequest($request);
         $data3 = $SearchFormBy_Author->getData();
+
 
 
         $SearchFormBy_Styles = $this->createForm(SearchPartsStylesType::class, $search_s);
@@ -198,5 +229,8 @@ class PartsController extends AbstractController
             ]);
     }
 
-
+    private function generateUniqueFileName()
+    {
+        return md5(uniqid());
+    }
 }

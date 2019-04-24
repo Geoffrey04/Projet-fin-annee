@@ -25,6 +25,11 @@ h1 {
     margin-bottom: 0;
 }
 
+a {
+    color : gray;
+
+}
+
 .main_link {
     color : initial;
 }
@@ -45,8 +50,9 @@ h1 {
 }
 
 img {
-    width: 17vw;
+    width: 21vw;
     height: auto;
+
 }
 
 .img_avatar {

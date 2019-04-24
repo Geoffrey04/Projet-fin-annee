@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Parts;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,7 +22,13 @@ class PartsType extends AbstractType
                     'Partition' => 'Partition'
                 ]
             ])
-            ->add('pictures')
+            ->add('pictures', FileType::class, [
+
+                'required'=> false,
+                'attr'=>[
+                    'accept'=> "image/png", "image/jpeg", "image/jpg"
+                ]
+            ])
             ->add('Groupe')
         ;
     }
@@ -30,6 +37,7 @@ class PartsType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Parts::class,
+
         ]);
     }
 }
