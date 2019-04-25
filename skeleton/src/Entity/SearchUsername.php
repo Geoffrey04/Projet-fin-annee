@@ -1,16 +1,25 @@
 <?php
 
 
+
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 
+
+
+
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
+ *
+ */
 class SearchUsername extends Users
 {
-
     /**
      * @var string|null
      */
     private $search_username;
+
 
     /**
      * @return string|null

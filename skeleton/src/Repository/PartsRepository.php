@@ -68,7 +68,7 @@ class PartsRepository extends ServiceEntityRepository
         {
             $query = $query
                 ->Where('p.title like  :searchTitle')
-                ->setParameter('searchTitle','%' . $searchPartsTitle->getSearchTitle().'%');
+                ->setParameter('searchTitle','%'.$searchPartsTitle->getSearchTitle().'%');
         }
         return $query->getQuery();
     }
@@ -82,6 +82,7 @@ class PartsRepository extends ServiceEntityRepository
             $query = $query
                 ->where('p.Groupe like :searchGroup')
                 ->setParameter('searchGroup', '%'. $searchPartsGroup->getSearchGroup().'%');
+
         }
         return $query->getQuery();
     }
@@ -107,7 +108,7 @@ class PartsRepository extends ServiceEntityRepository
         {
             $query = $query
                 ->where('p.styles like :searchStyles')
-                ->setParameter('searchStyles','%'. $searchPartsStyles->getSearchStyles(). '%');
+                ->setParameter('searchStyles','%'.$searchPartsStyles->getSearchStyles().'%');
         }
         return $query->getQuery();
     }

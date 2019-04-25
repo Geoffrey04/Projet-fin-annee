@@ -2,8 +2,8 @@
 
 namespace App\Form;
 
+
 use App\Entity\SearchUsername;
-use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,9 +28,10 @@ class SearchUsernameType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
+            'validation_groups' => false,
             'data_class' => SearchUsername::class,
             'method' => 'get',
-            'csrf_protection' => false ,
+            'csrf_protection' => false
         ]);
     }
 

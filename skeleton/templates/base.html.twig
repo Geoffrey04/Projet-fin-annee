@@ -1,76 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}Bienvenue{% endblock %}</title>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    {% block stylesheets %}<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-        <link rel="stylesheet" type="text/css" href="../../js/lightbox2/dist/css/lightbox.css"> {% endblock %}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"  crossorigin="anonymous">
+
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" type="text/css" href="../../js/lightbox2/dist/css/lightbox.css">
+    {% endblock %}
 </head>
 <body>
 
 <header>
-    <h1>Drums & Co</h1>
-    <div class="account_manager">
-        <div class="link_account">
+    <div id="AllMenu">
+
+    <div class="mainTitle row">
+        <h1 class="col-9">Drums & Co</h1>
 
 
+        <div class="link_account col-3">
             {% if app.user %}
-        <a href="{{ path('logout_user') }}">Déconnexion</a>
-                {% else %}
-                    <a href="{{ path('security_connexion') }}">Connexion</a>
-
-
-                    <a href="{{ path('registration_user') }}">Inscription</a>
+                <span>{{ user }}</span>
+                <a href="{{ path('logout_user') }}">Déconnexion</a>
+            {% else %}
+                <a href="{{ path('security_connexion') }}">Connexion</a>
+                <a href="{{ path('registration_user') }}">Inscription</a>
             {% endif %}
-
         </div>
     </div>
-
-    <nav>
-        <!--    <span>| | |</span>   ( menu hamburger -> + tard ) -->
-
-        <a href="{{ path('parts_index') }}" class="main_link">Accueil</a>
-
-                <div class="Parts_secondaryMenu">
-                <a href="" class="main_link">Morceaux</a>
-                    <div class="under_category">
-                        {% if app.user %}
-                        <a href="{{ path('parts_new') }}">Ajouter</a>
-                        <a href="{{ path('parts_search') }}">Rechercher</a>
-                        {% endif %}
+        <nav class="row">
+            <span class="btnMenu">| | |</span>
+                <div class="col-sm-3 link_home">
+                    <div class="accountMenuMobile">
+                    {% if app.user %}
+                        <span>{{ user }}</span>
+                        <a href="{{ path('logout_user') }}">Déconnexion</a>
+                    {% else %}
+                        <a href="{{ path('security_connexion') }}">Connexion</a>
+                        <a href="{{ path('registration_user') }}">Inscription</a>
+                    {% endif %}
                     </div>
+                        <a href="{{ path('parts_index') }}">Accueil</a>
                 </div>
+            <div class=" unrolledsMenus col-sm-3 dropdown">
+                    {% if app.user %}
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true" data-toggle="dropdown">Morceaux</button>
 
-
-
-                <div class="Profile_secondaryMenu">
-                <a href="" class="main_link">Profil</a>
-                    <div class="under_category">
-                        {% if app.user %}
-                        <a href="{{ path('edit_urprofile', {'id' : user.id}) }}">Editer</a>
-                        <a href="{{ path('user_profile', {'id' : user.id}) }}">Voir</a>
-                        {% endif %}
-                    </div>
-                </div>
-
-
-            <a href="{{ path('users_search') }}" class="main_link">Chercher Membres</a>
-
-    </nav>
+                                <div class="dropdown-menu">
+                                    <a href="{{ path('parts_new') }}" class="dropdown-item">Ajouter</a>
+                                    <a href="{{ path('parts_search') }}" class="dropdown-item">Rechercher</a>
+                                </div>
+                    {% endif %}
+            </div>
+                                    <div class="unrolledsMenus col-sm-3 dropdown">
+                                            {% if app.user %}
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">Mon Profil</button>
+                                            <div class="dropdown-menu">
+                                                <a href="{{ path('edit_urprofile', {'id' : user.id}) }}" class="dropdown-item">Editer</a>
+                                                <a href="{{ path('user_profile', {'id' : user.id}) }}" class="dropdown-item">Voir</a>
+                                             </div>
+                                             {% endif %}
+                                    </div>
+                                        <div class="searchUserLink col-sm-3">
+                                            <a href="{{ path('users_search') }}" class="main_link">Chercher Membres</a>
+                                        </div>
+        </nav>
+    </div>
 </header>
-
-
+    <div class="container">
 {% block body %}
 {% endblock %}
-
+    </div>
 <footer>
     <p>Some contains in footer of this page like blablabla</p>
 </footer>
-
 {% block javascripts %}
     <script  src="{{ asset('js/app.js') }}"></script>
     <script src="../../js/lightbox2/dist/js/lightbox-plus-jquery.js" type="text/javascript"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
 {% endblock %}
 </body>
 </html>

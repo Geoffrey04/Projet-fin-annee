@@ -19,7 +19,7 @@ class SearchPartsTypeType extends AbstractType
         $builder
             ->add('type' , ChoiceType::class, [
                 'required' => false,
-                'label' => false,
+                'label' => 'Type :' ,
                 'attr' =>[
                     'placeholder'=> 'type tablature ou partitions'
                 ],

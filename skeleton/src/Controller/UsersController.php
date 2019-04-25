@@ -28,7 +28,7 @@ class UsersController extends AbstractController
     /**
      * @Route("/users", name="users_index")
      */
-    public function index(UsersRepository $usersRepository) : Response
+    public function index(UsersRepository $usersRepository): Response
     {
 
         return $this->render('users/index.html.twig', [
@@ -44,10 +44,9 @@ class UsersController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/registration" , name="registration_user")
      */
-    public function registration(Request $request,UserPasswordEncoderInterface $encoder)
+    public function registration(Request $request, UserPasswordEncoderInterface $encoder)
     {
         $user = new Users();;
-
 
 
         $form = $this->createForm(UsersType::class, $user);
@@ -55,34 +54,25 @@ class UsersController extends AbstractController
         $form->handleRequest($request);
 
 
-
-        if($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $avatar_img = $form->get('avatar')->getData();
 
             // condition si le champ avatar_img est vide ,mettre l'image 'profil_default' par défaut :
 
-            if($_FILES['users']['name']['avatar'] == "")
-            {
+            if ($_FILES['users']['name']['avatar'] == "") {
 
 
                 $user->setAvatar('profil_default.png');
 
-            }
-            else {
+            } else {
 
                 $avatar_name = $this->generateUniqueFileName();
-                $avatar_img->move(self::AVATAR_DIRECTORY, $avatar_name.".png");
-                $user->setAvatar($avatar_name.".png");
+                $avatar_img->move(self::AVATAR_DIRECTORY, $avatar_name . ".png");
+                $user->setAvatar($avatar_name . ".png");
 
 
             }
-
-
-
-
-
 
 
             $encod = $encoder->encodePassword($user, $user->getPassword());
@@ -94,23 +84,28 @@ class UsersController extends AbstractController
 
             return $this->render('users/login.html.twig',
                 ['form' => $form->createView(),
-                 'user' => $this->getUser(), ]);
+                    'user' => $this->getUser(),]);
         }
 
-        return $this->render('/users/registration.html.twig' ,
+        return $this->render('/users/registration.html.twig',
             ['form' => $form->createView(),
                 'user' => $this->getUser(),]);
+    }
+
+    private function generateUniqueFileName()
+    {
+        return md5(uniqid());
     }
 
     /**
      * @Route("/connexion" , name="security_connexion")
      */
-     public function connexion(Request $request , AuthenticationUtils $authenticationUtils)
+    public function connexion(Request $request, AuthenticationUtils $authenticationUtils)
     {
         $error = $authenticationUtils->getLastAuthenticationError();
 
         return $this->render('users/login.html.twig',
-            ['error' => $error ,
+            ['error' => $error,
                 'user' => $this->getUser(),]);
 
     }
@@ -130,28 +125,23 @@ class UsersController extends AbstractController
     public function check()
     {
 
-        if (true == $this->get('security.authorization_checker')->isGranted('ROLE_USER'))
-        {
+        if (true == $this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             return $this->redirectToRoute('parts_index');
         }
 
-        if (true == $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
-        {
+        if (true == $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('users_search');
-        }
-
-        else {
+        } else {
             return $this->redirectToRoute('registration_user');
 
         }
     }
 
-
     /**
      * @return Response
      * @Route("/profile/{id}/show_profile" , name="user_profile" , methods={"GET"})
      */
-    public function profile_user($id ,PartsRepository $partsRepository, UsersRepository $usersRepository) : Response
+    public function profile_user($id, PartsRepository $partsRepository, UsersRepository $usersRepository): Response
     {
 
 
@@ -159,11 +149,11 @@ class UsersController extends AbstractController
 
         return $this->render('users/show_profile.html.twig',
             ['users' => $user,
-             'user' => $this->getUser(),
-             'id_user' => $id ,
-             'parts' => $partsRepository->findBy(
-                  ["author"=> $user]
-              )  ]);
+                'user' => $this->getUser(),
+                'id_user' => $id,
+                'parts' => $partsRepository->findBy(
+                    ["author" => $user]
+                )]);
 
     }
 
@@ -171,11 +161,11 @@ class UsersController extends AbstractController
      * @Route("/{id}/edit_profile", name="edit_urprofile" , methods={"GET" , "POST"})
      *
      */
-    public function edit_profile(Request $request, Users $user , UserPasswordEncoderInterface $encoder) : Response
+    public function edit_profile(Request $request, Users $user, UserPasswordEncoderInterface $encoder): Response
     {
 
 
-        $avatarUser = $user->getAvatar() ;
+        $avatarUser = $user->getAvatar();
         $user->setAvatar('');
 
 
@@ -183,28 +173,22 @@ class UsersController extends AbstractController
         $form->handleRequest($request);
 
 
-        if($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $avatar_img = $form->get('avatar')->getData();
 
 
-            if($_FILES['users']['name']['avatar'] == "")
-            {
+            if ($_FILES['users']['name']['avatar'] == "") {
 
                 $user->setAvatar($avatarUser);
 
-            }
-            else {
+            } else {
 
                 $avatar_name = $this->generateUniqueFileName();
-                $avatar_img->move(self::AVATAR_DIRECTORY, $avatar_name.".png");
-                $user->setAvatar($avatar_name.".png");
+                $avatar_img->move(self::AVATAR_DIRECTORY, $avatar_name . ".png");
+                $user->setAvatar($avatar_name . ".png");
 
 
             }
-
-
-
 
 
             $encod = $encoder->encodePassword($user, $user->getPassword());
@@ -223,51 +207,42 @@ class UsersController extends AbstractController
         ]);
     }
 
-
-
     /**
      * @Route("/search", name="users_search")
+     *
      */
-    public function search(Request $request,UsersRepository $usersRepository) : Response
+    public function search(Request $request, UsersRepository $usersRepository): Response
     {
 
         $search_u = new SearchUsername();
-        $search_s = new SearchUserStyles();
-        $search_i = new SearchUserInfluences();
-
-
-
-
-        $SearchFormBy_username = $this->createForm(SearchUsernameType::class ,$search_u);
+        $SearchFormBy_username = $this->createForm(SearchUsernameType::class, $search_u);
         $SearchFormBy_username->handleRequest($request);
         $data = $SearchFormBy_username->getData();
-        //dump($data);
 
+
+        $search_s = new SearchUserStyles();
         $SearchFormBy_style = $this->createForm(SearchStylesType::class, $search_s);
         $SearchFormBy_style->handleRequest($request);
         $data2 = $SearchFormBy_style->getData();
-
         //dump($data2);
 
+
+        $search_i = new SearchUserInfluences();
         $SearchFormBy_influences = $this->createForm(SearchInfluencesType::class, $search_i);
         $SearchFormBy_influences->handleRequest($request);
         $data3 = $SearchFormBy_influences->getData();
-       // dump($data3);
+        // dump($data3);
+
+        $users = $usersRepository->findAll();
 
 
 
+        if ($SearchFormBy_username->isSubmitted()) {
 
-
-        if($SearchFormBy_username->isSubmitted())
-        {
-
-           // $search_u->setSearchUsername($data->getUsername());
-            ////$users = $usersRepository->FindUserByName($search_u)->getResult();
-
-            if($data->getUsername()) {
+            if ($data->getUsername()) {
                 $search_u->setSearchUsername($data->getUsername());
+                 $users = $usersRepository->FindUserByName($search_u)->getResult();
 
-                $users = $usersRepository->FindUserByName($search_u)->getResult();
 
                 if (!empty($users)) {
                     $users = array_merge($users);
@@ -275,11 +250,14 @@ class UsersController extends AbstractController
 
             }
         }
-        if($SearchFormBy_style->isSubmitted())
-        {
-            if($data2->getStyles()) {
-                $search_s->setSearchStyle($data2->getStyles());
 
+
+
+
+        if ($SearchFormBy_style->isSubmitted()) {
+
+            if ($data2->getStyles()) {
+                $search_s->setSearchStyle($data2->getStyles());
                 $users = $usersRepository->FindUserByStyles($search_s)->getResult();
 
                 if (!empty($users)) {
@@ -291,14 +269,12 @@ class UsersController extends AbstractController
         }
 
 
-        if($SearchFormBy_influences->isSubmitted())
-        {
-           // $search_i->setSearchInfluence($data3->getInfluences());
-           // $users = $usersRepository->FindUserByInfluences($search_i)->getResult();
 
-            if($data3->getInfluences()) {
+
+        if ($SearchFormBy_influences->isSubmitted()) {
+
+            if ($data3->getInfluences()) {
                 $search_i->setSearchInfluence($data3->getInfluences());
-
                 $users = $usersRepository->FindUserByInfluences($search_i)->getResult();
 
                 if (!empty($users)) {
@@ -309,10 +285,7 @@ class UsersController extends AbstractController
 
         }
 
-        if(!$SearchFormBy_influences->isSubmitted() and !$SearchFormBy_style->isSubmitted() and !$SearchFormBy_username->isSubmitted())
-        {
-            $users = $usersRepository->findAll();
-        }
+
 
         return $this->render('users/search.html.twig', [
             'controller_name' => 'UsersController',
@@ -323,11 +296,6 @@ class UsersController extends AbstractController
             'form_I' => $SearchFormBy_influences->createView(),
 
         ]);
-    }
-
-    private function generateUniqueFileName()
-    {
-        return md5(uniqid());
     }
 
 

@@ -11,8 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
- * @UniqueEntity("mail")
- * @UniqueEntity("username", message="Le pseudo est déjà utilisé !Veuillez en choisir un autre")
+ * @UniqueEntity("mail" , entityClass="App\Entity\Users")
+ * @UniqueEntity("username", entityClass="App\Entity\Users", message="Le pseudo est déjà utilisé !Veuillez en choisir un autre")
  */
 class Users implements UserInterface , PasswordEncoderInterface
 {

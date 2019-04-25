@@ -8,6 +8,7 @@
   {#  {{ include('parts/_form.html.twig') }}   #}
 
 {% if app.user %}
+    <div class="formView">
     {{ form_start(form) }}
 
     {{ form_row(form.title, {'label': 'titre', 'attr':
@@ -25,11 +26,12 @@
     {{ form_row(form.pictures, {'label': 'pictures', 'attr':
         {'placeholder': 'image...'}}) }}
 
-    <button type="submit">Envoyez</button>
+    <button type="submit" class="btn btn-success">Envoyez</button>
 
     {{ form_end(form) }}
-    <a href="{{ path('parts_index') }}">back to list</a>
+    <a href="{{ path('parts_index') }}">Accueil</a>
 
+    </div>
 {% endif %}
 
 

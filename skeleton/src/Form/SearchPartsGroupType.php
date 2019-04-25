@@ -17,7 +17,7 @@ class SearchPartsGroupType extends AbstractType
         $builder
             ->add('groupe' , TextType::class, [
                 'required' => false,
-                'label' => false,
+                'label' => 'Groupe :' ,
                 'attr' =>[
                     'placeholder'=> "Nom de l'artiste ou du groupe"
                 ]

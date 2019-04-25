@@ -148,6 +148,8 @@ class PartsController extends AbstractController
     public function PartsSearch(Request $request,PartsRepository $partsRepository) : Response
     {
 
+        $parts = $partsRepository->findAll();
+
         $search_t = new SearchPartsTitle() ;
         $search_g = new SearchPartsGroup();
         $search_a = new SearchPartsAuthor();
@@ -180,33 +182,44 @@ class PartsController extends AbstractController
         $data5 = $SearchFormBy_Type->getData();
        // dump($data5);
 
+
+
         if($SearchFormBy_title->isSubmitted())
         {
-            $search_t->setSearchTitle($data->getTitle());
-            $parts = $partsRepository->findPartsByTitle($search_t)->getResult();
+            if($data->getTitle()) {
+                $search_t->setSearchTitle($data->getTitle());
+                $parts = $partsRepository->findPartsByTitle($search_t)->getResult();
+            }
 
         }
-        elseif($SearchFormBy_Group->isSubmitted())
-        {
-            $search_g->setSearchGroup($data2->getGroupe());
-            $parts = $partsRepository->findPartsByGroup($search_g)->getResult();
-        }
-        elseif($SearchFormBy_Author->isSubmitted())
-        {
-            $search_a->setSearchAuthor($data3->getAuthor());
 
-            $parts = $partsRepository->findPartsByAuthor($search_a)->getResult();
-
-        }
-        elseif ($SearchFormBy_Styles->isSubmitted())
+        if($SearchFormBy_Group->isSubmitted())
         {
-            $search_s->setSearchStyles($data4->getStyles());
-            $parts = $partsRepository->findPartsByStyles($search_s)->getResult();
+            if($data2->getGroupe()) {
+                $search_g->setSearchGroup($data2->getGroupe());
+                $parts = $partsRepository->findPartsByGroup($search_g)->getResult();
+            }
         }
-        elseif($SearchFormBy_Type->isSubmitted())
+        if($SearchFormBy_Author->isSubmitted())
         {
-            $search_type->setSearchType($data5->getType());
-            $parts = $partsRepository->findPartsByType($search_type)->getResult();
+            if($data3->getAuthor()) {
+                $search_a->setSearchAuthor($data3->getAuthor());
+                $parts = $partsRepository->findPartsByAuthor($search_a)->getResult();
+            }
+        }
+        if ($SearchFormBy_Styles->isSubmitted())
+        {
+            if($data4->getStyles()) {
+                $search_s->setSearchStyles($data4->getStyles());
+                $parts = $partsRepository->findPartsByStyles($search_s)->getResult();
+            }
+        }
+        if($SearchFormBy_Type->isSubmitted())
+        {
+            if($data5->getType()) {
+                $search_type->setSearchType($data5->getType());
+                $parts = $partsRepository->findPartsByType($search_type)->getResult();
+            }
 
         }
         else

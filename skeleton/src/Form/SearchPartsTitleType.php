@@ -17,7 +17,7 @@ class SearchPartsTitleType extends AbstractType
         $builder
             ->add('title' , TextType::class, [
                 'required' => false,
-                'label' => false,
+                'label' => 'Titre :',
                 'attr' =>[
                     'placeholder'=> 'titre du morceau'
                 ]

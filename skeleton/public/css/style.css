@@ -1,53 +1,48 @@
 header {
-    border-radius: 1em;
-    width: 100%;
-    height: 11vw;
     background-color: brown;
     color : whitesmoke;
+    border-radius: 7px;
+    margin : 10px ;
+    padding: 5px;
+    overflow-wrap: break-word;
 }
 
 footer {
     text-align: center;
-    border-radius: 1em;
     width: 100%;
     height: 7vw ;
     background-color: brown;
     color : whitesmoke;
 }
 
-nav {
-    display : flex;
-    justify-content: space-around;
-}
 
 h1 {
     text-align: center;
-    margin-bottom: 0;
+}
+
+.accountMenuMobile {
+    display: none;
+}
+
+.mainTitle {
+    margin-left: 16%;
 }
 
 a {
-    color : gray;
-
+    color : black;
 }
 
-.main_link {
-    color : initial;
-}
-
-.main_link:hover {
-    background-color: white;
-    color : brown;
+a:hover {
+    color : slategray;
+    text-decoration: none;
 }
 
 .link_account {
     text-align: end;
-    width: 7%;
-    margin-left: 92%;
+    display: flex;
+    flex-direction: column;
 }
 
-.account_manager{
-    width: 100%;
-}
 
 img {
     width: 21vw;
@@ -60,16 +55,106 @@ img {
     height: auto;
 }
 
-.under_category {
-    display: none;
+.searchUserLink {
+    text-align: right;
+    padding-top: 5px;
 }
 
-.Profile_secondaryMenu, .Parts_secondaryMenu {
+.unrolledsMenus {
     text-align: center;
 }
 
-.Parts_secondaryMenu:hover > div , .Profile_secondaryMenu:hover > div{
-    display: flex;
-    flex-direction: column;
+.btnMenu {
+    display: none;
 }
 
+button:focus {
+    background-color: whitesmoke;
+}
+
+.formView {
+    border: 1px solid brown;
+    border-radius: 1vw;
+    padding: 15px;
+    width: 50%;
+    margin: auto;
+}
+
+.formResearch {
+    border: 1px solid brown;
+    border-radius: 1vw;
+    padding: 15px;
+    width: 86%;
+    margin: auto;
+}
+
+.formResearch > button {
+    display: block;
+    align-items: center;
+    margin: auto;
+}
+
+.formView > a  {
+    display: block;
+    text-align: center;
+    margin: auto;
+    background-color: firebrick;
+    color: whitesmoke;
+    border-radius: 6px;
+    width: 18%;
+    padding: 5px;
+}
+
+.formView > a:hover {
+    background-color: whitesmoke;
+    color : firebrick;
+    border: 1px solid firebrick;
+}
+
+
+@media (max-width: 812px) {
+    #AllMenu > nav > .unrolledsMenus , .link_account, .searchUserLink , a {
+        display: none;
+    }
+
+    .btnMenu {
+        display: block;
+        position: relative;
+        margin-left: 48%;
+    }
+
+    #AllMenu > span {
+        display: inline-block;
+    }
+
+    #AllMenu:hover > nav > .unrolledsMenus, .searchUserLink, a , .link_account{
+        display: inline-block;
+    }
+
+
+    .searchUserLink {
+        text-align: center;
+    }
+
+    .link_account {
+        display: none;
+    }
+
+    .unrolledsMenus {
+        text-align: center;
+        padding: 0;
+    }
+
+    .accountMenuMobile {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .link_home{
+        text-align: center;
+
+    }
+
+
+
+}

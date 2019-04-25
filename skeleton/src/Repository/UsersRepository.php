@@ -63,7 +63,7 @@ class UsersRepository extends ServiceEntityRepository
         if ($searchUser->getSearchUsername()) {
             $query = $query
                 ->Where('a.username like :searchUser')
-                ->setParameter('searchUser', '%' . $searchUser->getSearchUsername() . '%');
+                ->setParameter('searchUser','%'.$searchUser->getSearchUsername().'%');
         }
         return $query->getQuery();
     }
@@ -75,14 +75,14 @@ class UsersRepository extends ServiceEntityRepository
      */
     public function FindUserByInfluences(SearchUserInfluences $searchInfluences) : Query
     {
-        $query = $this->createQueryBuilder('a');
+        $query = $this->createQueryBuilder('p');
 
 
         if ($searchInfluences->getSearchInfluence())
         {
             $query = $query
-                ->Where('a.influences like :searchUser')
-                ->setParameter('searchUser', '%' . $searchInfluences->getSearchInfluence() . '%');
+                ->Where('p.influences like :searchInfluences')
+                ->setParameter('searchInfluences','%'.$searchInfluences->getSearchInfluence().'%');
 
         }
         return $query->getQuery();
@@ -94,14 +94,14 @@ class UsersRepository extends ServiceEntityRepository
      */
     public function FindUserByStyles(SearchUserStyles $searchStyles) : Query
     {
-        $query = $this->createQueryBuilder('a');
+        $query = $this->createQueryBuilder('x');
 
 
         if($searchStyles->getSearchStyle())
         {
             $query = $query
-                ->Where('a.styles like :searchUser')
-                ->setParameter('searchUser', '%'.$searchStyles->getSearchStyle().'%');
+                ->Where('x.styles like :searchStyles')
+                ->setParameter('searchStyles','%'.$searchStyles->getSearchStyle().'%');
         }
         return $query->getQuery();
     }

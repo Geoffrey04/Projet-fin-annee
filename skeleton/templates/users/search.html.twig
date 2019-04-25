@@ -12,18 +12,6 @@
     <button>Rechercher</button>
     {{ form_end(form_U) }}
 
-    {{ form_start(form_S) }}
-    {{ form_row(form_S.styles) }}
-
-    {{ form_end(form_S) }}
-
-    {{ form_start(form_I) }}
-    {{ form_row(form_I.influences) }}
-
-    {{ form_end(form_I) }}
-
-
-
 
 </div>
 
@@ -45,7 +33,7 @@
 
     <tbody>
     {% for user in users %}
-    <tr id="Mytr" style="">
+    <tr>
         <td><img class="img_avatar" src="img/avatar_directory/{{ user.avatar }}"></td>
         <td><a href="{{ path('user_profile', {'id' : user.id})  }}">{{ user.username }}</a></td>
         <td>{{ user.city }}</td>

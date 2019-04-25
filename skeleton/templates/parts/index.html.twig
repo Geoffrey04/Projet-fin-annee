@@ -2,10 +2,11 @@
 
 {% block title %}Parts index{% endblock %}
 {% block body %}
+
     <h1>Accueil</h1>
 
-    <div class="infos_home" style="border: 1px solid black;">
-        <h2>Bienvenue {{ user }}</h2>
+    <div class="infos_home row" style="border: 1px solid black;">
+        <h2 style="text-align: center">Bienvenue</h2>
         <p>
 
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis massa finibus, dictum lacus eu, consectetur eros. In non lacinia lorem, at porttitor est. Vivamus ipsum nunc, varius et nunc et, faucibus convallis lacus. Morbi id lectus viverra massa interdum condimentum mattis in metus. Phasellus tempor viverra congue. Vestibulum pulvinar lacus quis leo molestie posuere. Praesent et ornare nulla. Nulla vulputate ligula quis lacus ornare, sit amet imperdiet magna bibendum. Nunc eros felis, placerat vel ex quis, sollicitudin sagittis nisi.
@@ -13,50 +14,34 @@
             Etiam rutrum arcu quis pellentesque vulputate. Nunc quis neque a orci vulputate pellentesque. Etiam et condimentum odio, a aliquet lacus. Maecenas et tortor metus. Pellentesque non commodo diam, nec varius eros. Pellentesque faucibus lorem id elit laoreet tempus. Praesent consectetur at neque sed placerat. Interdum et malesuada fames ac ante ipsum primis in faucibus. </p>
     </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Author</th>
-                <th>Title</th>
-                <th>Groupe</th>
-                <th>Styles</th>
-                <th>Type</th>
-                <th>Pictures</th>
-               <!-- <th>actions</th> -->
-            </tr>
-        </thead>
-        <tbody>
-        {% set i = 1 %}
-        {% for part in parts |reverse if i < 5 %} {% set i = i + 1 %}
-            <tr>
-                <td>{{ part.author }}</td>
-                <td>{{ part.title }}</td>
-                <td>{{ part.groupe }}</td>
-                <td>{{ part.styles }}</td>
-                <td>{{ part.type }}</td>
-                {% if part.type == "Tablature" %}
-                <td id="td_tab"><a href="/img/TAB1.jpg" data-lightbox="img_fullscreen" data-title="tab_img"><img src='/img/TAB1.jpg' alt="tablature_drumsset" id="img_tab"></a></td>
-                {% else  %}
-                    <td><a href="/img/tab_acdc.jpg" data-lightbox="img_fullscreen" data-title="score_img"><img src="/img/tab_acdc.jpg" id="img_score"></a></td>
-                {% endif %}
 
-              <!--  <td>
-                   <a href="{{ path('parts_show', {'id': part.id}) }}">show</a>
-                    <a href="{{ path('parts_edit', {'id': part.id}) }}">edit</a>
+        <div class="row">
+    {% set i = 1 %}
+
+        {% for part in parts |reverse if i < 7 %} {% set i = i + 1 %}
+
+                <div class="col-4">
+                <ul>
+            {% if part.type == "Tablature" %}
+                <img src='/img/TAB1.jpg' alt="tablature_drumsset">
+            {% else  %}
+                <img src="/img/tab_acdc.jpg" alt="score_drumsset">
+            {% endif %}
 
 
-                    <a href="images/image-1.jpg" data-lightbox="image-1" data-title="My caption">Image #1</a>
-                </td> -->
+                <li>Auteur :{{ part.author }}</li>
+                <li>Titre :{{ part.title }}</li>
+                <li>Groupe/Artiste(s):{{ part.groupe }}</li>
+                <li>Style(s) :{{ part.styles }}</li>
+                <li>Type :{{ part.type }}</li>
+            </ul>
+               </div>
 
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
+
+
+
         {% endfor %}
-        </tbody>
-    </table>
-
+    </div>
 
 
 

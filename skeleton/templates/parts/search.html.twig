@@ -5,32 +5,14 @@
 {% block body %}
     <h1 id="test_title">Chercher un morceau</h1>
 
-    <div clas="search_parts" style="border: 1px solid black">
+    <div class="formResearch">
         {{ form_start(form_T) }}
         {{ form_row(form_T.title) }}
-        <button>Chercher</button>
-        {{ form_end(form_T) }}
-
-        {{ form_start(form_G) }}
         {{ form_row(form_G.groupe) }}
-        <button>Chercher</button>
-        {{ form_end(form_G) }}
-
-        {{ form_start(form_A) }}
         {{ form_row(form_A.author) }}
-        <button>Chercher</button>
-        {{ form_end(form_A) }}
-
-        {{ form_start(form_S) }}
         {{ form_row(form_S.styles) }}
-        <button>Chercher</button>
-        {{ form_end(form_S) }}
-
-
-        {{ form_start(form_Type) }}
         {{ form_row(form_Type.type) }}
-        <button>Chercher</button>
-        {{ form_end(form_Type) }}
+        <button class="btn btn-secondary">Chercher</button>
     </div>
 
     <table class="table">
@@ -71,8 +53,5 @@
 
 
 <script>
-    lightbox.option({
-        'fitImagesInViewport' : false,
-    })
 </script>
 {% endblock %}

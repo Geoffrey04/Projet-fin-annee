@@ -19,7 +19,7 @@ class SearchPartsAuthorType extends AbstractType
             ->add('author' , EntityType::class, [
                 'class' => Users::class,
                 'required' => false,
-                'label' => false,
+                'label' => 'Auteur :' ,
                 'attr' =>[
                     'placeholder'=> "nom de l'auteur de la publication"
                 ]
@@ -31,6 +31,7 @@ class SearchPartsAuthorType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
+            'validation_groups' => false,
             'data_class' => SearchPartsAuthor::class,
             'method' => 'get',
             'csrf_protection' => false ,
