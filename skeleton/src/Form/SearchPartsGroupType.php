@@ -19,7 +19,8 @@ class SearchPartsGroupType extends AbstractType
                 'required' => false,
                 'label' => 'Groupe :' ,
                 'attr' =>[
-                    'placeholder'=> "Nom de l'artiste ou du groupe"
+                    'placeholder'=> "Nom de l'artiste ou du groupe",
+                    'class' => 'form-control-sm',
                 ]
             ]);
 

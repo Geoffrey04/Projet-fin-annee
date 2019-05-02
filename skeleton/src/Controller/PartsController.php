@@ -15,6 +15,7 @@ use App\Form\SearchPartsStylesType;
 use App\Form\SearchPartsTitleType;
 use App\Form\SearchPartsTypeType;
 use App\Repository\PartsRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,7 +40,7 @@ class PartsController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="parts_new", methods={"GET","POST"})
+     * @Route("/profile/new", name="parts_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -73,7 +74,7 @@ class PartsController extends AbstractController
     }
 
     /**
-     * @Route("/show/{id}", name="parts_show", methods={"GET"})
+     * @Route("/profile/show/{id}", name="parts_show", methods={"GET"})
      */
     public function show(Parts $part): Response
     {
@@ -84,7 +85,7 @@ class PartsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="parts_edit", methods={"GET","POST"})
+     * @Route("/profile/{id}/edit", name="parts_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Parts $part): Response
     {
@@ -127,7 +128,7 @@ class PartsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="parts_delete", methods={"DELETE"})
+     * @Route("/profile/{id}", name="parts_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Parts $part): Response
     {
@@ -143,9 +144,9 @@ class PartsController extends AbstractController
 
     /**
      * @return Response
-     * @Route("/partsSearch" , name="parts_search")
+     * @Route("/profile/partsSearch" , name="parts_search")
      */
-    public function PartsSearch(Request $request,PartsRepository $partsRepository) : Response
+    public function PartsSearch(Request $request,PartsRepository $partsRepository , PaginatorInterface $paginator) : Response
     {
 
         $parts = $partsRepository->findAll();
@@ -188,7 +189,8 @@ class PartsController extends AbstractController
         {
             if($data->getTitle()) {
                 $search_t->setSearchTitle($data->getTitle());
-                $parts = $partsRepository->findPartsByTitle($search_t)->getResult();
+                 $parts = $paginator->paginate($partsRepository->findPartsByTitle($search_t)->getResult(),
+                    $request->query->getInt('page', 1),6);
             }
 
         }
@@ -197,34 +199,39 @@ class PartsController extends AbstractController
         {
             if($data2->getGroupe()) {
                 $search_g->setSearchGroup($data2->getGroupe());
-                $parts = $partsRepository->findPartsByGroup($search_g)->getResult();
+                $parts = $paginator->paginate($partsRepository->findPartsByGroup($search_g)->getResult(),
+                    $request->query->getInt('page', 1),6);
             }
         }
         if($SearchFormBy_Author->isSubmitted())
         {
             if($data3->getAuthor()) {
                 $search_a->setSearchAuthor($data3->getAuthor());
-                $parts = $partsRepository->findPartsByAuthor($search_a)->getResult();
+                $parts = $paginator->paginate($partsRepository->findPartsByAuthor($search_a)->getResult(),
+                    $request->query->getInt('page', 1),6);
             }
         }
         if ($SearchFormBy_Styles->isSubmitted())
         {
             if($data4->getStyles()) {
                 $search_s->setSearchStyles($data4->getStyles());
-                $parts = $partsRepository->findPartsByStyles($search_s)->getResult();
+                $parts = $paginator->paginate($partsRepository->findPartsByStyles($search_s)->getResult(),
+                    $request->query->getInt('page', 1),6);
             }
         }
         if($SearchFormBy_Type->isSubmitted())
         {
             if($data5->getType()) {
                 $search_type->setSearchType($data5->getType());
-                $parts = $partsRepository->findPartsByType($search_type)->getResult();
+                $parts = $paginator->paginate($partsRepository->findPartsByType($search_type)->getResult(),
+                    $request->query->getInt('page', 1),6);
             }
 
         }
         else
             {
-                $parts = $partsRepository->findAll();
+                $parts = $paginator->paginate($partsRepository->findAll(),
+                    $request->query->getInt('page', 1), 6);
             }
 
 

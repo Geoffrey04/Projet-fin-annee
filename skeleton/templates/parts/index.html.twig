@@ -20,20 +20,20 @@
 
         {% for part in parts |reverse if i < 7 %} {% set i = i + 1 %}
 
-                <div class="col-4">
+                <div class="col-sm-4 card">
                 <ul>
             {% if part.type == "Tablature" %}
-                <img src='/img/TAB1.jpg' alt="tablature_drumsset">
+                <img src='/img/TAB1.jpg' alt="tablature_drumsset" class="card-img">
             {% else  %}
-                <img src="/img/tab_acdc.jpg" alt="score_drumsset">
+                <img src="/img/tab_acdc.jpg" alt="score_drumsset" class="card-img">
             {% endif %}
 
 
-                <li>Auteur :{{ part.author }}</li>
-                <li>Titre :{{ part.title }}</li>
-                <li>Groupe/Artiste(s):{{ part.groupe }}</li>
-                <li>Style(s) :{{ part.styles }}</li>
-                <li>Type :{{ part.type }}</li>
+                <li class="card-text"><span class="CategoryNameParts">Auteur :  </span>{{ part.author }}</li>
+                <li class="card-text"><span class="CategoryNameParts">Titre  :  </span>{{ part.title }}</li>
+                <li class="card-text"><span class="CategoryNameParts">Groupe :  </span>{{ part.groupe }}</li>
+                <li class="card-text"><span class="CategoryNameParts">Style  :  </span>{{ part.styles }}</li>
+                <li class="card-text"><span class="CategoryNameParts">Type   :  </span>{{ part.type }}</li>
             </ul>
                </div>
 

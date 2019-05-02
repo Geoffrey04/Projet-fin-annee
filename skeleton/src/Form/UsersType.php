@@ -20,34 +20,34 @@ class UsersType extends AbstractType
     {
         $builder
             ->add('username', TextType::class, [
-                'label'=> "Pseudo",
+                'label'=> "Pseudo :",
                 'attr'=>[
                     'placeholder' => "nom d'utilisateur...",
                 ]
             ])
 
             ->add('password' , PasswordType::class, [
-                'label'=>'Mot de passe',
+                'label'=>'Mot de passe :',
                 'attr'=>[
                     'placeholder'=>'mot de passe...'
     ]
             ])
             ->add('confirm_password', PasswordType::class, [
-                'label'=> 'Confirmation mot de passe',
+                'label'=> 'Confirmez votre mot de passe :',
                 'attr'=>[
                     'placeholder'=>'confirmez votre mot de passe..'
     ]
             ])
 
             ->add('mail', EmailType::class, [
-                'label'=> 'email',
+                'label'=> 'Email :',
                 'attr'=>[
                     'placeholder'=> 'adresse email...'
                 ]
             ])
 
             ->add('city', TextType::class, [
-                'label'=>'Ville',
+                'label'=>'Ville :',
                 'required' => false,
                 'attr'=> [
                     'placeholder'=> 'votre ville...'
@@ -55,7 +55,7 @@ class UsersType extends AbstractType
             ])
 
             ->add('age', IntegerType::class, [
-                'label'=> 'votre age...',
+                'label'=> 'Age :',
                 'required' => false,
                 'attr'=> [
                     'placeholder'=> 'votre age ...'
@@ -63,23 +63,23 @@ class UsersType extends AbstractType
             ])
 
             ->add('influences', TextareaType::class, [
-                'label'=> 'Influences',
+                'label'=> 'Influences :',
                 'required' => false,
                 'attr'=> [
-                    'placeholder'=>'Vos artistes ou groupes favoris...'
+                    'placeholder'=>'Vos artistes ou groupes ...'
                 ]
             ])
 
             ->add('styles', TextareaType::class, [
-                'label'=> 'styles',
+                'label'=> 'Style(s) :',
                 'required' => false,
                 'attr'=> [
-                    'placeholder'=>'Votre/vos style(s) de musique favoris...'
+                    'placeholder'=>'Votre/vos style(s) de musique ...'
                 ]
             ])
 
             ->add('avatar', FileType::class, [
-            'label'=>'Avatar',
+                'label'=>'Avatar/Photo de profil :',
                 'required'=> false,
                 'attr'=>[
                     'placeholder'=> 'Image de profil...',

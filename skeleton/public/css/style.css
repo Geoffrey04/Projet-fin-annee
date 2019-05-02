@@ -1,31 +1,27 @@
+body {
+    width: 100%;
+    height: auto;
+}
+
 header {
-    background-color: brown;
+    background-color: #2C3E50;
     color : whitesmoke;
-    border-radius: 7px;
-    margin : 10px ;
     padding: 5px;
-    overflow-wrap: break-word;
+    margin-bottom: 3%;
+    width: auto;
 }
 
 footer {
     text-align: center;
     width: 100%;
     height: 7vw ;
-    background-color: brown;
+    margin-top : 7%;
+    background-color: #2C3E50;
     color : whitesmoke;
 }
 
-
 h1 {
     text-align: center;
-}
-
-.accountMenuMobile {
-    display: none;
-}
-
-.mainTitle {
-    margin-left: 16%;
 }
 
 a {
@@ -33,51 +29,73 @@ a {
 }
 
 a:hover {
-    color : slategray;
+    color : black;
     text-decoration: none;
 }
 
-.link_account {
-    text-align: end;
-    display: flex;
-    flex-direction: column;
-}
-
-
 img {
-    width: 21vw;
+    width: 100%;
     height: auto;
 
 }
-
 .img_avatar {
     width: 6vw;
     height: auto;
 }
 
-.searchUserLink {
-    text-align: right;
-    padding-top: 5px;
+.img_parts {
+    width: 45%;
+    height: auto;
+}
+
+label.required:before {
+    content: "*";
+}
+
+.TextCustomCards {
+    list-style: none;
+    text-align: start;
+}
+
+.TextCustomMenu {
+    text-align: center;
+}
+
+.CategoryNameParts {
+    font-weight: bold;
+}
+
+.navbar {
+    flex-direction: column;
+}
+
+.infos_home {
+    padding: 15px;
+    margin: auto auto 5% auto;
+    text-align: justify;
+    box-shadow: 6px 6px 5px gray;
+    border-radius: 1vw;
+}
+
+.tabParts {
+    display: flex;
+    flex-direction: column;
+
 }
 
 .unrolledsMenus {
     text-align: center;
 }
 
-.btnMenu {
-    display: none;
-}
-
-button:focus {
-    background-color: whitesmoke;
-}
-
 .formView {
-    border: 1px solid brown;
+    border: 2px solid #2C3E50 ;
+    border-top: none;
+    border-left: none;
     border-radius: 1vw;
     padding: 15px;
     width: 50%;
-    margin: auto;
+    margin: auto auto 5% auto ;
+    box-shadow: 10px 5px 5px gray;
 }
 
 .formResearch {
@@ -94,15 +112,14 @@ button:focus {
     margin: auto;
 }
 
-.formView > a  {
+ .formView > div > a  {
     display: block;
     text-align: center;
-    margin: auto;
-    background-color: firebrick;
+    background-color: #18BC9C;
     color: whitesmoke;
     border-radius: 6px;
-    width: 18%;
-    padding: 5px;
+    width: 17vw;
+     margin: auto;
 }
 
 .formView > a:hover {
@@ -111,8 +128,18 @@ button:focus {
     border: 1px solid firebrick;
 }
 
-
-@media (max-width: 812px) {
+.formLogin{
+    border: 1px solid brown;
+    border-top: none;
+    border-left: none;
+    border-radius: 1vw;
+    padding: 15px;
+    width: 45%;
+    margin :auto;
+    box-shadow: 8px 7px 7px black;
+    text-align: center;
+}
+/* @media (max-width: 812px) {
     #AllMenu > nav > .unrolledsMenus , .link_account, .searchUserLink , a {
         display: none;
     }
@@ -157,4 +184,4 @@ button:focus {
 
 
 
-}
+} */

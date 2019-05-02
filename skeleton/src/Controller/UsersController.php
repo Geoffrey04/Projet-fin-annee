@@ -7,12 +7,14 @@ use App\Entity\SearchUserInfluences;
 use App\Entity\SearchUserStyles;
 use App\Entity\SearchUsername;
 use App\Entity\Users;
+use App\Form\FormLoginType;
 use App\Form\SearchInfluencesType;
 use App\Form\SearchStylesType;
 use App\Form\SearchUsernameType;
 use App\Form\UsersType;
 use App\Repository\PartsRepository;
 use App\Repository\UsersRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -158,7 +160,7 @@ class UsersController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit_profile", name="edit_urprofile" , methods={"GET" , "POST"})
+     * @Route("/profile/{id}/edit_profile", name="edit_urprofile" , methods={"GET" , "POST"})
      *
      */
     public function edit_profile(Request $request, Users $user, UserPasswordEncoderInterface $encoder): Response
@@ -208,11 +210,13 @@ class UsersController extends AbstractController
     }
 
     /**
-     * @Route("/search", name="users_search")
+     * @Route("/profile/search", name="users_search")
      *
      */
-    public function search(Request $request, UsersRepository $usersRepository): Response
+    public function search(Request $request, UsersRepository $usersRepository , PaginatorInterface $paginator): Response
     {
+
+
 
         $search_u = new SearchUsername();
         $SearchFormBy_username = $this->createForm(SearchUsernameType::class, $search_u);
@@ -233,7 +237,8 @@ class UsersController extends AbstractController
         $data3 = $SearchFormBy_influences->getData();
         // dump($data3);
 
-        $users = $usersRepository->findAll();
+        $users = $paginator->paginate($usersRepository->findAll(), $request->query->getInt('page', 1), 5);
+
 
 
 
@@ -241,12 +246,15 @@ class UsersController extends AbstractController
 
             if ($data->getUsername()) {
                 $search_u->setSearchUsername($data->getUsername());
-                 $users = $usersRepository->FindUserByName($search_u)->getResult();
+                 $users = $paginator->paginate($usersRepository->FindUserByName($search_u)->getResult(),
+                    $request->query->getInt('page' , 1), 5
+                );
 
 
-                if (!empty($users)) {
-                    $users = array_merge($users);
-                }
+
+               // if (!empty($users)) {
+               //     $users = array_merge($users);
+               // }
 
             }
         }
@@ -258,11 +266,12 @@ class UsersController extends AbstractController
 
             if ($data2->getStyles()) {
                 $search_s->setSearchStyle($data2->getStyles());
-                $users = $usersRepository->FindUserByStyles($search_s)->getResult();
+                $users = $paginator->paginate($usersRepository->FindUserByStyles($search_s)->getResult(),
+                    $request->query->getInt('page', 1), 5);
 
-                if (!empty($users)) {
-                    $users = array_merge($users);
-                }
+                //if (!empty($users)) {
+                //    $users = array_merge($users);
+               // }
 
             }
 
@@ -275,15 +284,17 @@ class UsersController extends AbstractController
 
             if ($data3->getInfluences()) {
                 $search_i->setSearchInfluence($data3->getInfluences());
-                $users = $usersRepository->FindUserByInfluences($search_i)->getResult();
+                $users = $paginator->paginate($usersRepository->FindUserByInfluences($search_i)->getResult(),
+                    $request->query->getInt('page', 1),6);
 
-                if (!empty($users)) {
-                    $users = array_merge($users);
-                }
+               // if (!empty($users)) {
+               //    $users = array_merge($users);
+               //  }
 
             }
 
         }
+
 
 
 
@@ -294,6 +305,7 @@ class UsersController extends AbstractController
             'form_U' => $SearchFormBy_username->createView(),
             'form_S' => $SearchFormBy_style->createView(),
             'form_I' => $SearchFormBy_influences->createView(),
+
 
         ]);
     }

@@ -24,7 +24,7 @@ class PartsType extends AbstractType
             ])
             ->add('pictures', FileType::class, [
 
-                'required'=> false,
+                'required'=> true,
                 'attr'=>[
                     'accept'=> "image/png", "image/jpeg", "image/jpg"
                 ]

@@ -21,7 +21,8 @@ class SearchPartsAuthorType extends AbstractType
                 'required' => false,
                 'label' => 'Auteur :' ,
                 'attr' =>[
-                    'placeholder'=> "nom de l'auteur de la publication"
+                    'placeholder'=> "nom de l'auteur de la publication",
+                    'class' => 'form-control-sm',
                 ]
             ]);
 

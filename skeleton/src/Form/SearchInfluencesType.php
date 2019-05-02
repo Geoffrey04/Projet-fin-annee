@@ -15,9 +15,9 @@ class SearchInfluencesType extends AbstractType
         $builder
             ->add('influences' , TextType::class, [
                 'required' => false,
-                'label' => false,
+                'label' => 'Influence :',
                 'attr' =>[
-                    'placeholder'=> 'artiste ou groupe'
+                    'placeholder'=> 'artiste ou groupe...'
                 ]
             ]);
     }

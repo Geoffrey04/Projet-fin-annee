@@ -16,9 +16,9 @@ class SearchUsernameType extends AbstractType
         $builder
             ->add('username' , TextType::class, [
                 'required' => false,
-                'label' => false,
+                'label' => 'Pseudo :',
                 'attr' =>[
-                    'placeholder'=> 'prenom ou pseudo'
+                    'placeholder'=> 'pseudo...'
                 ]
         ]);
 

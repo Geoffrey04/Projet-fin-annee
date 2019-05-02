@@ -20,7 +20,8 @@ class SearchPartsStylesType extends AbstractType
                 'required' => false,
                 'label' => 'Styles :',
                 'attr' =>[
-                    'placeholder'=> 'style de musique'
+                    'placeholder'=> 'style de musique',
+                    'class' => 'form-control-sm',
                 ]
             ]);
 

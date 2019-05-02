@@ -17,9 +17,9 @@ class SearchStylesType extends AbstractType
         $builder
             ->add('styles' , TextType::class, [
                 'required' => false,
-                'label' => false,
+                'label' => 'Style :',
                 'attr' =>[
-                    'placeholder'=> 'style de musique'
+                    'placeholder'=> 'style de musique...'
                 ]
             ]);
 

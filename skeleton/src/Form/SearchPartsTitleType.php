@@ -19,7 +19,8 @@ class SearchPartsTitleType extends AbstractType
                 'required' => false,
                 'label' => 'Titre :',
                 'attr' =>[
-                    'placeholder'=> 'titre du morceau'
+                    'placeholder'=> 'titre du morceau',
+                    'class' => 'form-control-sm',
                 ]
             ]);
 

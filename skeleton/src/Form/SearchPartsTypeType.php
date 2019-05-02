@@ -21,7 +21,8 @@ class SearchPartsTypeType extends AbstractType
                 'required' => false,
                 'label' => 'Type :' ,
                 'attr' =>[
-                    'placeholder'=> 'type tablature ou partitions'
+                    'placeholder'=> 'type tablature ou partitions',
+                    'class' => 'form-control-sm',
                 ],
                 'choices'=> [
         'Tablature' => 'Tablature',
