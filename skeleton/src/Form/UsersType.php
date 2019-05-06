@@ -87,7 +87,11 @@ class UsersType extends AbstractType
                 ]
             ])
 
-            ->add('Enregistrer', SubmitType::class)
+            ->add('Enregistrer', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-secondary',
+                ]
+            ])
         ;
 
         $builder

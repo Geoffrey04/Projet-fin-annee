@@ -1,48 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Parts index{% endblock %}
+{% block title %}Accueil{% endblock %}
 {% block body %}
+<h1>Accueil</h1>
 
-    <h1>Accueil</h1>
-
-    <div class="infos_home row" style="border: 1px solid black;">
-        <h2 style="text-align: center">Bienvenue</h2>
+    <div class="presentationHome row">
+        <h2>Bienvenue</h2>
         <p>
-
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis massa finibus, dictum lacus eu, consectetur eros. In non lacinia lorem, at porttitor est. Vivamus ipsum nunc, varius et nunc et, faucibus convallis lacus. Morbi id lectus viverra massa interdum condimentum mattis in metus. Phasellus tempor viverra congue. Vestibulum pulvinar lacus quis leo molestie posuere. Praesent et ornare nulla. Nulla vulputate ligula quis lacus ornare, sit amet imperdiet magna bibendum. Nunc eros felis, placerat vel ex quis, sollicitudin sagittis nisi.
 
-            Etiam rutrum arcu quis pellentesque vulputate. Nunc quis neque a orci vulputate pellentesque. Etiam et condimentum odio, a aliquet lacus. Maecenas et tortor metus. Pellentesque non commodo diam, nec varius eros. Pellentesque faucibus lorem id elit laoreet tempus. Praesent consectetur at neque sed placerat. Interdum et malesuada fames ac ante ipsum primis in faucibus. </p>
+            Etiam rutrum arcu quis pellentesque vulputate. Nunc quis neque a orci vulputate pellentesque. Etiam et condimentum odio, a aliquet lacus. Maecenas et tortor metus. Pellentesque non commodo diam, nec varius eros. Pellentesque faucibus lorem id elit laoreet tempus. Praesent consectetur at neque sed placerat. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+        </p>
     </div>
-
-
-        <div class="row">
+    <div class="row">
     {% set i = 1 %}
-
         {% for part in parts |reverse if i < 7 %} {% set i = i + 1 %}
-
-                <div class="col-sm-4 card">
-                <ul>
+        <div class="col-sm-4 card text-black-100 border-light mb-3">
+            <ul class="TextCustomCards">
             {% if part.type == "Tablature" %}
-                <img src='/img/TAB1.jpg' alt="tablature_drumsset" class="card-img">
+                <img src='/img/TAB1.jpg' alt="tablature d'un morceau de batterie" class="card-img">
             {% else  %}
-                <img src="/img/tab_acdc.jpg" alt="score_drumsset" class="card-img">
+                <img src="/img/tab_acdc.jpg" alt="partition de musique pour batterie" class="card-img">
             {% endif %}
-
-
-                <li class="card-text"><span class="CategoryNameParts">Auteur :  </span>{{ part.author }}</li>
-                <li class="card-text"><span class="CategoryNameParts">Titre  :  </span>{{ part.title }}</li>
-                <li class="card-text"><span class="CategoryNameParts">Groupe :  </span>{{ part.groupe }}</li>
-                <li class="card-text"><span class="CategoryNameParts">Style  :  </span>{{ part.styles }}</li>
-                <li class="card-text"><span class="CategoryNameParts">Type   :  </span>{{ part.type }}</li>
+                <li class="card-text"><span class="CategoryNamePartsBold">Auteur :  </span>{{ part.author }}</li>
+                <li class="card-text"><span class="CategoryNamePartsBold">Titre  :  </span>{{ part.title }}</li>
+                <li class="card-text"><span class="CategoryNamePartsBold">Groupe :  </span>{{ part.groupe }}</li>
+                <li class="card-text"><span class="CategoryNamePartsBold">Style  :  </span>{{ part.styles }}</li>
+                <li class="card-text"><span class="CategoryNamePartsBold">Type   :  </span>{{ part.type }}</li>
             </ul>
-               </div>
-
-
-
-
+        </div>
         {% endfor %}
     </div>
-
-
-
 {% endblock %}

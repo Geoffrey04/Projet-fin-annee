@@ -25,6 +25,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UsersController extends AbstractController
 {
+    /*create folder for register the avatar profile of user*/
     const AVATAR_DIRECTORY = "img/avatar_directory";
 
     /**
@@ -40,7 +41,6 @@ class UsersController extends AbstractController
 
         ]);
     }
-
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -48,57 +48,40 @@ class UsersController extends AbstractController
      */
     public function registration(Request $request, UserPasswordEncoderInterface $encoder)
     {
+        /*Register a new user with form*/
         $user = new Users();;
-
-
         $form = $this->createForm(UsersType::class, $user);
-
         $form->handleRequest($request);
 
-
         if ($form->isSubmitted() && $form->isValid()) {
-
             $avatar_img = $form->get('avatar')->getData();
 
-            // condition si le champ avatar_img est vide ,mettre l'image 'profil_default' par défaut :
-
+            /*if the user doesn't record a profile picture , value default : "profil_default.png"*/
             if ($_FILES['users']['name']['avatar'] == "") {
-
-
                 $user->setAvatar('profil_default.png');
-
             } else {
-
                 $avatar_name = $this->generateUniqueFileName();
                 $avatar_img->move(self::AVATAR_DIRECTORY, $avatar_name . ".png");
                 $user->setAvatar($avatar_name . ".png");
-
-
             }
-
-
-            $encod = $encoder->encodePassword($user, $user->getPassword());
+            $PasswordEncode = $encoder->encodePassword($user, $user->getPassword());
             $user->setRoles('ROLE_USER');
-            $user->setPassword($encod);
+            $user->setPassword($PasswordEncode);
             $EmptyManager = $this->getDoctrine()->getManager();
             $EmptyManager->persist($user);
             $EmptyManager->flush();
 
             return $this->render('users/login.html.twig',
                 ['form' => $form->createView(),
-                    'user' => $this->getUser(),]);
+                    'user' => $this->getUser(),
+                ]);
         }
 
         return $this->render('/users/registration.html.twig',
             ['form' => $form->createView(),
-                'user' => $this->getUser(),]);
+                'user' => $this->getUser(),
+            ]);
     }
-
-    private function generateUniqueFileName()
-    {
-        return md5(uniqid());
-    }
-
     /**
      * @Route("/connexion" , name="security_connexion")
      */
@@ -108,29 +91,24 @@ class UsersController extends AbstractController
 
         return $this->render('users/login.html.twig',
             ['error' => $error,
-                'user' => $this->getUser(),]);
-
+             'user' => $this->getUser(),
+            ]);
     }
 
     /**
      * @Route("/logout" , name="logout_user")
      */
     public function logout()
-    {
-
-    }
-
+    {}
     /**
      * @Route("/", name="check")
      */
-
     public function check()
     {
-
+        /*check 'role' of the user connects.*/
         if (true == $this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             return $this->redirectToRoute('parts_index');
         }
-
         if (true == $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('users_search');
         } else {
@@ -138,15 +116,13 @@ class UsersController extends AbstractController
 
         }
     }
-
     /**
      * @return Response
      * @Route("/profile/{id}/show_profile" , name="user_profile" , methods={"GET"})
      */
     public function profile_user($id, PartsRepository $partsRepository, UsersRepository $usersRepository): Response
     {
-
-
+        /*Create view of user profile with his description and list of his score drums set*/
         $user = $usersRepository->find($id);
 
         return $this->render('users/show_profile.html.twig',
@@ -156,46 +132,32 @@ class UsersController extends AbstractController
                 'parts' => $partsRepository->findBy(
                     ["author" => $user]
                 )]);
-
     }
-
     /**
      * @Route("/profile/{id}/edit_profile", name="edit_urprofile" , methods={"GET" , "POST"})
      *
      */
     public function edit_profile(Request $request, Users $user, UserPasswordEncoderInterface $encoder): Response
     {
-
-
+        /*Edit user profile by form*/
         $avatarUser = $user->getAvatar();
         $user->setAvatar('');
-
-
         $form = $this->createForm(UsersType::class, $user);
         $form->handleRequest($request);
-
 
         if ($form->isSubmitted() && $form->isValid()) {
             $avatar_img = $form->get('avatar')->getData();
 
-
             if ($_FILES['users']['name']['avatar'] == "") {
-
                 $user->setAvatar($avatarUser);
-
             } else {
-
                 $avatar_name = $this->generateUniqueFileName();
                 $avatar_img->move(self::AVATAR_DIRECTORY, $avatar_name . ".png");
                 $user->setAvatar($avatar_name . ".png");
-
-
             }
-
-
-            $encod = $encoder->encodePassword($user, $user->getPassword());
+            $PasswordEncode = $encoder->encodePassword($user, $user->getPassword());
             $user->setRoles('ROLE_USER');
-            $user->setPassword($encod);
+            $user->setPassword($PasswordEncode);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('parts_index', [
@@ -208,21 +170,16 @@ class UsersController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
     /**
      * @Route("/profile/search", name="users_search")
      *
      */
     public function search(Request $request, UsersRepository $usersRepository , PaginatorInterface $paginator): Response
     {
-
-
-
         $search_u = new SearchUsername();
         $SearchFormBy_username = $this->createForm(SearchUsernameType::class, $search_u);
         $SearchFormBy_username->handleRequest($request);
         $data = $SearchFormBy_username->getData();
-
 
         $search_s = new SearchUserStyles();
         $SearchFormBy_style = $this->createForm(SearchStylesType::class, $search_s);
@@ -230,73 +187,44 @@ class UsersController extends AbstractController
         $data2 = $SearchFormBy_style->getData();
         //dump($data2);
 
-
         $search_i = new SearchUserInfluences();
         $SearchFormBy_influences = $this->createForm(SearchInfluencesType::class, $search_i);
         $SearchFormBy_influences->handleRequest($request);
         $data3 = $SearchFormBy_influences->getData();
         // dump($data3);
-
         $users = $paginator->paginate($usersRepository->findAll(), $request->query->getInt('page', 1), 5);
 
-
-
-
         if ($SearchFormBy_username->isSubmitted()) {
-
             if ($data->getUsername()) {
                 $search_u->setSearchUsername($data->getUsername());
                  $users = $paginator->paginate($usersRepository->FindUserByName($search_u)->getResult(),
                     $request->query->getInt('page' , 1), 5
                 );
-
-
-
                // if (!empty($users)) {
                //     $users = array_merge($users);
                // }
-
             }
         }
-
-
-
-
         if ($SearchFormBy_style->isSubmitted()) {
-
             if ($data2->getStyles()) {
                 $search_s->setSearchStyle($data2->getStyles());
                 $users = $paginator->paginate($usersRepository->FindUserByStyles($search_s)->getResult(),
                     $request->query->getInt('page', 1), 5);
-
                 //if (!empty($users)) {
                 //    $users = array_merge($users);
                // }
-
             }
-
         }
-
-
-
-
         if ($SearchFormBy_influences->isSubmitted()) {
-
             if ($data3->getInfluences()) {
                 $search_i->setSearchInfluence($data3->getInfluences());
                 $users = $paginator->paginate($usersRepository->FindUserByInfluences($search_i)->getResult(),
                     $request->query->getInt('page', 1),6);
-
-               // if (!empty($users)) {
+                // if (!empty($users)) {
                //    $users = array_merge($users);
                //  }
-
             }
-
         }
-
-
-
 
         return $this->render('users/search.html.twig', [
             'controller_name' => 'UsersController',
@@ -305,14 +233,11 @@ class UsersController extends AbstractController
             'form_U' => $SearchFormBy_username->createView(),
             'form_S' => $SearchFormBy_style->createView(),
             'form_I' => $SearchFormBy_influences->createView(),
-
-
         ]);
     }
 
-
+    private function generateUniqueFileName()
+    {
+        return md5(uniqid());
+    }
 }
-
-
-
-

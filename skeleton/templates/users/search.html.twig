@@ -3,55 +3,49 @@
 {% block title %}Rechercher un utilisateur{% endblock %}
 
 {% block body %}
-    <div class="row">
-<div class="formView col-sm-6">
-
-    {{ form_start(form_U) }}
-    {{ form_row(form_U.username) }}
-    {{ form_row(form_S.styles) }}
-    {{  form_row(form_I.influences) }}
-    <button>Rechercher</button>
-    {{ form_end(form_U) }}
-
-
-</div>
+<div class="row">
+    <div class="formView col-sm-6">
+        {{ form_start(form_U) }}
+        {{ form_row(form_U.username) }}
+        {{ form_row(form_S.styles) }}
+        {{  form_row(form_I.influences) }}
+        <button class="btn btn-secondary">Rechercher</button>
+        {{ form_end(form_U) }}
     </div>
+</div>
 
 <div class="row">
-<div class="col-sm-12 table-responsive">
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th scope="col">Avatar/Photo.profil</th>
-        <th scope="col">Nom/pseudo</th>
-        <th scope="col">Ville</th>
-        <th scope="col">Age</th>
-        <th scope="col">Styles</th>
-        <th scope="col">influences(artistes,groupes)</th>
-
-
-    </tr>
+    <div class="col-sm-12 table-responsive">
+        <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Avatar/Photo.profil</th>
+                <th scope="col">Nom/pseudo</th>
+                <th scope="col">Ville</th>
+                <th scope="col">Age</th>
+                <th scope="col">Styles</th>
+                <th scope="col">influences(artistes,groupes)</th>
+            </tr>
     </thead>
 
     <tbody>
-    {% for user in users %}
-    <tr class="table-dark">
-        <td><img class="img_avatar" src="../img/avatar_directory/{{ user.avatar }}" alt="avatar_user"></td>
-        <td><a href="{{ path('user_profile', {'id' : user.id})  }}">{{ user.username }}</a></td>
-        <td>{{ user.city }}</td>
-        <td>{{ user.age }}</td>
-        <td>{{ user.styles }}</td>
-        <td>{{ user.influences }}</td>
-        {% endfor %}
-    </tr>
+         {% for user in users %}
+            <tr class="table-primary">
+                <td><img class="img_avatar" src="../img/avatar_directory/{{ user.avatar }}" alt="image de profil de l'utilisateur"></td>
+                <td><a href="{{ path('user_profile', {'id' : user.id})  }}">{{ user.username }}</a></td>
+                <td>{{ user.city }}</td>
+                <td>{{ user.age }}</td>
+                <td>{{ user.styles }}</td>
+                <td>{{ user.influences }}</td>
+         {% endfor %}
+            </tr>
     </tbody>
-
-</table>
+        </table>
+    </div>
 </div>
+<div class="row">
+    <div class="pagination-sm">
+            {{ knp_pagination_render(users) }}
+    </div>
 </div>
-
-<div class="pagination-sm">
-    {{ knp_pagination_render(users) }}
-</div>
-
 {% endblock %}

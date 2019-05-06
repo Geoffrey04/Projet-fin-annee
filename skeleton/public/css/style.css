@@ -24,23 +24,33 @@ h1 {
     text-align: center;
 }
 
-a {
-    color : black;
-}
-
-a:hover {
-    color : black;
-    text-decoration: none;
-}
-
 img {
     width: 100%;
     height: auto;
-
 }
+a {
+    color: rgba(48,45,48,1)
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.iconDrums {
+    width: 9%;
+}
+
+.presentationHome {
+    border : 1px solid black ;
+    border-radius: 1vw;
+    margin-bottom: 4%;
+}
+
 .img_avatar {
-    width: 6vw;
+    width: 7vw;
     height: auto;
+    display: block;
+    margin: auto;
 }
 
 .img_parts {
@@ -48,21 +58,22 @@ img {
     height: auto;
 }
 
-label.required:before {
-    content: "*";
-}
-
 .TextCustomCards {
     list-style: none;
     text-align: start;
 }
 
-.TextCustomMenu {
-    text-align: center;
+.CategoryNamePartsBold {
+    font-weight: bold;
+    color: black;
 }
 
-.CategoryNameParts {
-    font-weight: bold;
+label.required:before {
+    content: "*";
+}
+
+.TextCustomMenu {
+    text-align: center;
 }
 
 .navbar {
@@ -80,7 +91,6 @@ label.required:before {
 .tabParts {
     display: flex;
     flex-direction: column;
-
 }
 
 .unrolledsMenus {
@@ -93,39 +103,24 @@ label.required:before {
     border-left: none;
     border-radius: 1vw;
     padding: 15px;
-    width: 50%;
+    width: 100%;
     margin: auto auto 5% auto ;
     box-shadow: 10px 5px 5px gray;
 }
 
 .formResearch {
-    border: 1px solid brown;
+    border: 1px solid #2C3E50 ;
     border-radius: 1vw;
     padding: 15px;
     width: 86%;
     margin: auto;
+
 }
 
 .formResearch > button {
     display: block;
     align-items: center;
     margin: auto;
-}
-
- .formView > div > a  {
-    display: block;
-    text-align: center;
-    background-color: #18BC9C;
-    color: whitesmoke;
-    border-radius: 6px;
-    width: 17vw;
-     margin: auto;
-}
-
-.formView > a:hover {
-    background-color: whitesmoke;
-    color : firebrick;
-    border: 1px solid firebrick;
 }
 
 .formLogin{
@@ -139,6 +134,61 @@ label.required:before {
     box-shadow: 8px 7px 7px black;
     text-align: center;
 }
+
+.linkCustom {
+    display: block;
+    text-align: center;
+    background-color: slategray;
+    color: whitesmoke;
+    border-radius: 6px;
+    width: 17vw;
+    margin: auto;
+}
+
+.profileUserCard {
+    max-width: 20rem;
+    text-align: start;
+    margin: auto;
+}
+
+.btnDeletePartsEdit {
+    text-align: end;
+    margin-top: -34px;
+}
+
+.deletePartsBtn > form > button {
+    color : white;
+}
+
+@media (max-width: 812px)
+{
+
+.btnDeletePartsEdit {
+    text-align: center;
+    margin: auto;
+}
+
+.formView {
+    text-align: center;
+}
+
+.img_avatar {
+    width: 22vw;
+}
+
+.iconDrums{
+    width: 20%;
+}
+
+}
+
+/*.formView > a:hover {
+    background-color: whitesmoke;
+    color : firebrick;
+    border: 1px solid firebrick;
+} */
+
+
 /* @media (max-width: 812px) {
     #AllMenu > nav > .unrolledsMenus , .link_account, .searchUserLink , a {
         display: none;

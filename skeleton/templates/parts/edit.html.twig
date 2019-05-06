@@ -1,36 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Parts{% endblock %}
+{% block title %}Edition de partition{% endblock %}
 
 {% block body %}
-    <h1>Edit Parts</h1>
-
+<div class="formView" style="word-wrap: break-word">
+    <h1>Editer :</h1>
+        <h2 style="text-align: center">{{ part.title }}</h2>
+            <p>Les champs marqués d'un (*) sont obligatoires</p>
     {% if app.user %}
         {{ form_start(form) }}
-
-        {{ form_row(form.title, {'label': 'titre', 'attr':
+        {{ form_row(form.title, {'label': 'Titre :', 'attr':
             {'placeholder': 'titre de la musique...'}}) }}
-
-        {{ form_row(form.Groupe, {'label': 'groupe', 'attr':
-            {'placeholder': 'Nom du chanteur ou groupe...'}}) }}
-
-        {{ form_row(form.styles, {'label': 'style', 'attr':
+        {{ form_row(form.Groupe, {'label': 'Groupe :', 'attr':
+            {'placeholder': "Nom de l'artiste ou groupe..."}}) }}
+        {{ form_row(form.styles, {'label': 'Style(s) :', 'attr':
             {'placeholder': 'style de musique...'}}) }}
-
-        {{ form_row(form.type , {'label': 'type', 'attr':
+        {{ form_row(form.type , {'label': 'Type :', 'attr':
             {'placeholder': 'Type de morceau...'}}) }}
-
-        {{ form_row(form.pictures, {'label': 'pictures', 'attr':
+        {{ form_row(form.pictures, {'label': 'Image :', 'attr':
             {'placeholder': 'image...'}}) }}
-
-        <button type="submit">Envoyez</button>
-
+                <button type="submit" class="btn btn-primary">Envoyez</button>
         {{ form_end(form) }}
-        <a href="{{ path('parts_index') }}">back to list</a>
-
+                <div class="btnDeletePartsEdit">{{ include('parts/_delete_form.html.twig') }}</div>
     {% endif %}
-
-    <a href="{{ path('parts_index') }}">back to list</a>
-
-    {{ include('parts/_delete_form.html.twig') }}
+                    <a href="{{ path('parts_index') }}" class="linkCustom">back to list</a>
+</div>
 {% endblock %}

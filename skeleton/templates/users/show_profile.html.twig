@@ -3,79 +3,75 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Avatar/Photo.profil</th>
-            <th>Nom/pseudo</th>
-            <th>Ville</th>
-            <th>Age</th>
-            <th>Styles</th>
-            <th>influences(artistes,groupes)</th>
+<div class="row">
+   <div class="card text-white bg-secondary mb-3 profileUserCard col-sm-9">
+       <ul style="list-style-type: none; padding-right: 13%;">
+            <li><img class="img_avatar" src="../../img/avatar_directory/{{ users.avatar }}" alt="Picture profile of this user"></li>
+            <li class="card-text">
+                <span class="CategoryNamePartsBold">Pseudo : </span>
+                    <p>{{ users.username }}</p>
+            </li>
+            <li class="card-text">
+                <span class="CategoryNamePartsBold">Ville : </span>
+                    <p>{{ users.city }}</p>
+            </li>
+            <li class="card-text">
+                <span class="CategoryNamePartsBold">Age :</span>
+                    <p>{{ users.age }}</p>
+            </li>
+            <li class="card-text">
+                <span class="CategoryNamePartsBold">Style(s) de musique : </span>
+                    <p>{{ users.styles }}</p>
+            </li>
+            <li class="card-text">
+                <span class="CategoryNamePartsBold">Artistes ou groupes : </span>
+                    <p>{{ users.influences }}</p>
+            </li>
+       </ul>
+   </div>
+</div>
 
-
-        </tr>
-        </thead>
-
-        <tbody>
-                <h4>Profil</h4>
-        <tr>
-            <td><img class="img_avatar" src="../../img/avatar_directory/{{ users.avatar }}"></td>
-            <td>{{ users.username }}</td>
-            <td>{{ users.city }}</td>
-            <td>{{ users.age }}</td>
-            <td>{{ users.styles }}</td>
-            <td>{{ users.influences }}</td>
-
-        </tr>
-        </tbody>
-
-    </table>
-
-
-    <table class="table">
-        <tbody>
-                <h4>Liste des morceaux </h4>
-                {% for part in parts %}
-        <tr style="margin: 5px">
-
-            <th>Id</th>
-            <td>{{ part.id }}</td>
-        </tr>
-        <tr>
-            <th>Title</th>
-            <td>{{ part.title }}</td>
-        </tr>
-        <tr>
-            <th>Styles</th>
-            <td>{{ part.styles }}</td>
-        </tr>
-        <tr>
-            <th>Type</th>
-            <td>{{ part.type }}</td>
-        </tr>
-        <tr>
-            <th>Auteur de l'ajout</th>
-            <td>{{ part.author }}</td>
-        </tr>
-        <tr>
-            <th>Pictures</th>
-            <td><a href="../../img/sheetmusic_directory/{{ part.pictures }}" data-lightbox="img_profile" data-title="img_UserProfile"><img alt="PartsPicturesProfile" src="../../img/sheetmusic_directory/{{ part.pictures }}" class="img_parts"></a></td>
-            <td><a href="/img/sheetmusic_directory/{{ part.pictures }}" download="{{ part.title }}-{{ part.groupe }}_by{{ part.author }}">Telecharger</a></td>
-        </tr>
-        <tr>
-            {% if app.user.id ==  id_user  %}
-            <th>Edit</th>
-            <td><a href="{{ path('parts_edit', {'id': part.id}) }}">edit</a></td>
-            <td>{{ include('parts/_delete_form.html.twig') }}</td>
-            {% endif %}
-        </tr>
-
-
-        {% endfor %}
-        </tbody>
-    </table>
-
+<div class="row">
+    <div class="col-sm-12 table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Style(s)</th>
+                    <th>Type</th>
+                    <th>Image</th>
+                    {% if app.user.id ==  id_user  %}
+                        <th>Edition</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                    <h4>Liste de ses morceaux </h4>
+                        {% for part in parts %}
+                            <tr>
+                                <td class="align-middle">{{ part.title }}</td>
+                                <td class="align-middle">{{ part.styles }}</td>
+                                <td class="align-middle">{{ part.type }}</td>
+                                <td class="align-middle">
+                                    <a href="../../img/sheetmusic_directory/{{ part.pictures }}" data-lightbox="img_profile" data-title="img_UserProfile">Voir</a>
+                                </td>
+                                    {% if app.user.id ==  id_user  %}
+                                <td class="align-middle">
+                                    <a class="btn btn-primary" href="{{ path('parts_edit', {'id': part.id}) }}">Editer</a>
+                                </td>
+                                {% endif %}
+                                <td class="align-middle">
+                                    <a class="btn btn-primary" href="/img/sheetmusic_directory/{{ part.pictures }}" download="{{ part.title }}-{{ part.groupe }}_by{{ part.author }}">Télécharger</a>
+                                </td>
+                                <td class="align-middle">
+                                    <div style="margin-top: 0">{{ include('parts/_delete_form.html.twig') }}</div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 
 
 

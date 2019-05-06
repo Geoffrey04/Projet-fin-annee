@@ -26,8 +26,10 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PartsController extends AbstractController
 {
-
+        /*create folder for register the score drums set*/
     const SHEETMUSIC_DIRECTORY = "img/sheetmusic_directory";
+
+
     /**
      * @Route("/", name="parts_index", methods={"GET"})
      */
@@ -38,12 +40,12 @@ class PartsController extends AbstractController
             'user' => $this->getUser(),
         ]);
     }
-
     /**
      * @Route("/profile/new", name="parts_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
+        /*Register a new score and add description of this one by form*/
         $part = new Parts();
         $form = $this->createForm(PartsType::class, $part);
         $form->handleRequest($request);
@@ -52,12 +54,9 @@ class PartsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $sheet_music = $form->get('pictures')->getData();
             //dump($sheet_music);
-
             $nameSheetMusic = $this->generateUniqueFileName();
-
             $sheet_music->move(self::SHEETMUSIC_DIRECTORY, $nameSheetMusic.'.png' );
             $part->setPictures($sheet_music);
-
             $part->setAuthor($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($part);
@@ -65,14 +64,12 @@ class PartsController extends AbstractController
 
             return $this->redirectToRoute('parts_index');
         }
-
         return $this->render('parts/new.html.twig', [
             'part' => $part,
             'form' => $form->createView(),
             'user' => $this->getUser(),
         ]);
     }
-
     /**
      * @Route("/profile/show/{id}", name="parts_show", methods={"GET"})
      */
@@ -83,50 +80,39 @@ class PartsController extends AbstractController
             'user' => $this->getUser(),
         ]);
     }
-
     /**
-     * @Route("/profile/{id}/edit", name="parts_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="parts_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Parts $part): Response
     {
+        /*Edit the score drums set with form*/
         $partUser = $part->getPictures();
         $part->setPictures('');
-
-
         $form = $this->createForm(PartsType::class, $part);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $sheet_music = $form->get('pictures')->getData();
 
-            if($_FILES['parts']['name']['pictures'] == "")
-            {
+            if($_FILES['parts']['name']['pictures'] == "") {
                 $part->setPictures($partUser);
-
-            }else
-            {
+            }else {
                 $nameSheetMusic = $this->generateUniqueFileName();
                 $sheet_music->move(self::SHEETMUSIC_DIRECTORY, $nameSheetMusic . ".png" );
                 $part->setPictures($nameSheetMusic.'.png');
-            }
-
-
-
+                  }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('parts_index', [
                 'id' => $part->getId(),
             ]);
         }
-
-        return $this->render('parts/edit.html.twig', [
+        return $this->render('parts\edit.html.twig', [
             'part' => $part,
             'form' => $form->createView(),
             'user' => $this->getUser(),
         ]);
     }
-
     /**
      * @Route("/profile/{id}", name="parts_delete", methods={"DELETE"})
      */
@@ -140,8 +126,6 @@ class PartsController extends AbstractController
 
         return $this->redirectToRoute('parts_index');
     }
-
-
     /**
      * @return Response
      * @Route("/profile/partsSearch" , name="parts_search")
@@ -152,48 +136,24 @@ class PartsController extends AbstractController
         $parts = $partsRepository->findAll();
 
         $search_t = new SearchPartsTitle() ;
-        $search_g = new SearchPartsGroup();
-        $search_a = new SearchPartsAuthor();
-        $search_s = new SearchPartsStyles();
-        $search_type = new SearchPartsType();
-
         $SearchFormBy_title = $this->createForm(SearchPartsTitleType::class, $search_t);
         $SearchFormBy_title->handleRequest($request);
         $data = $SearchFormBy_title->getData();
-
-
-        $SearchFormBy_Group = $this->createForm(SearchPartsGroupType::class, $search_g);
-        $SearchFormBy_Group->handleRequest($request);
-        $data2 = $SearchFormBy_Group->getData();
-
-
-        $SearchFormBy_Author = $this->createForm(SearchPartsAuthorType::class, $search_a);
-        $SearchFormBy_Author->handleRequest($request);
-        $data3 = $SearchFormBy_Author->getData();
-
-
-
-        $SearchFormBy_Styles = $this->createForm(SearchPartsStylesType::class, $search_s);
-        $SearchFormBy_Styles->handleRequest($request);
-        $data4 = $SearchFormBy_Styles->getData();
-
-
-        $SearchFormBy_Type = $this->createForm(SearchPartsTypeType::class, $search_type);
-        $SearchFormBy_Type->handleRequest($request);
-        $data5 = $SearchFormBy_Type->getData();
-       // dump($data5);
-
-
 
         if($SearchFormBy_title->isSubmitted())
         {
             if($data->getTitle()) {
                 $search_t->setSearchTitle($data->getTitle());
-                 $parts = $paginator->paginate($partsRepository->findPartsByTitle($search_t)->getResult(),
+                $parts = $paginator->paginate($partsRepository->findPartsByTitle($search_t)->getResult(),
                     $request->query->getInt('page', 1),6);
             }
 
         }
+
+        $search_g = new SearchPartsGroup();
+        $SearchFormBy_Group = $this->createForm(SearchPartsGroupType::class, $search_g);
+        $SearchFormBy_Group->handleRequest($request);
+        $data2 = $SearchFormBy_Group->getData();
 
         if($SearchFormBy_Group->isSubmitted())
         {
@@ -203,6 +163,12 @@ class PartsController extends AbstractController
                     $request->query->getInt('page', 1),6);
             }
         }
+
+        $search_a = new SearchPartsAuthor();
+        $SearchFormBy_Author = $this->createForm(SearchPartsAuthorType::class, $search_a);
+        $SearchFormBy_Author->handleRequest($request);
+        $data3 = $SearchFormBy_Author->getData();
+
         if($SearchFormBy_Author->isSubmitted())
         {
             if($data3->getAuthor()) {
@@ -211,6 +177,12 @@ class PartsController extends AbstractController
                     $request->query->getInt('page', 1),6);
             }
         }
+
+        $search_s = new SearchPartsStyles();
+        $SearchFormBy_Styles = $this->createForm(SearchPartsStylesType::class, $search_s);
+        $SearchFormBy_Styles->handleRequest($request);
+        $data4 = $SearchFormBy_Styles->getData();
+
         if ($SearchFormBy_Styles->isSubmitted())
         {
             if($data4->getStyles()) {
@@ -219,6 +191,13 @@ class PartsController extends AbstractController
                     $request->query->getInt('page', 1),6);
             }
         }
+
+        $search_type = new SearchPartsType();
+        $SearchFormBy_Type = $this->createForm(SearchPartsTypeType::class, $search_type);
+        $SearchFormBy_Type->handleRequest($request);
+        $data5 = $SearchFormBy_Type->getData();
+
+
         if($SearchFormBy_Type->isSubmitted())
         {
             if($data5->getType()) {
@@ -234,10 +213,6 @@ class PartsController extends AbstractController
                     $request->query->getInt('page', 1), 6);
             }
 
-
-
-
-
         return $this->render('parts\search.html.twig',
             ['parts'=> $parts,
              'user' => $this->getUser(),
@@ -248,7 +223,6 @@ class PartsController extends AbstractController
              'form_Type' =>$SearchFormBy_Type->createView(),
             ]);
     }
-
     private function generateUniqueFileName()
     {
         return md5(uniqid());

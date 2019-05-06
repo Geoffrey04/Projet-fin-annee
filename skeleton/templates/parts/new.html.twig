@@ -4,44 +4,31 @@
 
 {% block body %}
     <h1>Enregistrer un nouveau morceau</h1>
+    {% if app.user %}
+        <div class="row">
+            <div class="formView col-sm-9">
+                {{ form_start(form) }}
 
-  {#  {{ include('parts/_form.html.twig') }}   #}
+                    {{ form_row(form.title, {'label': 'Titre :', 'attr':
+                    {'placeholder': 'titre de la musique...'}}) }}
 
-{% if app.user %}
-    <div class="row">
-    <div class="formView col-md-9">
-    {{ form_start(form) }}
+                    {{ form_row(form.Groupe, {'label': 'Groupe :', 'attr':
+                    {'placeholder': 'Nom du chanteur ou groupe...'}}) }}
 
-    {{ form_row(form.title, {'label': 'Titre :', 'attr':
-        {'placeholder': 'titre de la musique...'}}) }}
+                    {{ form_row(form.styles, {'label': 'Style(s) :', 'attr':
+                    {'placeholder': 'style de musique...'}}) }}
 
-    {{ form_row(form.Groupe, {'label': 'Groupe :', 'attr':
-        {'placeholder': 'Nom du chanteur ou groupe...'}}) }}
+                    {{ form_row(form.type , {'label': 'Type :', 'attr':
+                    {'placeholder': 'Type de morceau...'}}) }}
 
-    {{ form_row(form.styles, {'label': 'Style(s) :', 'attr':
-        {'placeholder': 'style de musique...'}}) }}
-
-    {{ form_row(form.type , {'label': 'Type :', 'attr':
-        {'placeholder': 'Type de morceau...'}}) }}
-
-    {{ form_row(form.pictures, {'label': 'Image :', 'attr':
-        {'placeholder': 'image...'}}) }}
-
-    <button type="submit" class="btn btn-success">Envoyez</button>
-
-    {{ form_end(form) }}
-        <div>
-    <a href="{{ path('parts_index') }}">Accueil</a>
-        </div>
-
-    </div>
+                    {{ form_row(form.pictures, {'label': 'Image :', 'attr':
+                    {'placeholder': 'image...'}}) }}
+                        <button type="submit" class="btn btn-secondary">Envoyez</button>
+                {{ form_end(form) }}
+                    <div>
+                        <a href="{{ path('parts_index') }}" class="linkCustom">Accueil</a>
+                    </div>
+            </div>
     </div>
 {% endif %}
-
-
-
-
-
-
-
 {% endblock %}
