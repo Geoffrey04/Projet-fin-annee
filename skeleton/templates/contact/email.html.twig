@@ -1,0 +1,17 @@
+{% block body %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+      <div>
+        <h2> De la part de : {{ pseudo }}</h2>
+            <h3>Sujet :  {{ subject }}</h3>
+                <p>{{ message }}</p>
+                    <span>Mail de : {{ pseudo }} :   {{ mail }}</span>
+      </div>
+    </body>
+    </html>
+{% endblock %}

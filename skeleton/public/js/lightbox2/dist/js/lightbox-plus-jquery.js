@@ -10419,7 +10419,7 @@ return jQuery;
     /*
       Show context menu for image on right-click
 
-      There is a div containing the navigation that spans the entire image and lives above of it. If
+      There is a div containing the contact that spans the entire image and lives above of it. If
       you right-click, you are right clicking this div and not the image. This prevents users from
       saving the image or using other context menu actions with the image.
 
@@ -10637,10 +10637,10 @@ return jQuery;
     this.enableKeyboardNav();
   };
 
-  // Display previous and next navigation if appropriate.
+  // Display previous and next contact if appropriate.
   Lightbox.prototype.updateNav = function() {
     // Check to see if the browser supports touch events. If so, we take the conservative approach
-    // and assume that mouse hover events are not supported and always show prev/next navigation
+    // and assume that mouse hover events are not supported and always show prev/next contact
     // arrows in image sets.
     var alwaysShowNav = false;
     try {

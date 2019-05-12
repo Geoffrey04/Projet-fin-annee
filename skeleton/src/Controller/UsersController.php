@@ -7,7 +7,6 @@ use App\Entity\SearchUserInfluences;
 use App\Entity\SearchUserStyles;
 use App\Entity\SearchUsername;
 use App\Entity\Users;
-use App\Form\FormLoginType;
 use App\Form\SearchInfluencesType;
 use App\Form\SearchStylesType;
 use App\Form\SearchUsernameType;
@@ -46,7 +45,7 @@ class UsersController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/registration" , name="registration_user")
      */
-    public function registration(Request $request, UserPasswordEncoderInterface $encoder)
+    public function registration(Request $request, UserPasswordEncoderInterface $encoder) : Response
     {
         /*Register a new user with form*/
         $user = new Users();;
@@ -56,7 +55,7 @@ class UsersController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $avatar_img = $form->get('avatar')->getData();
 
-            /*if the user doesn't record a profile picture , value default : "profil_default.png"*/
+            /*if the user doesn't record a profile picture , default value : "profil_default.png"*/
             if ($_FILES['users']['name']['avatar'] == "") {
                 $user->setAvatar('profil_default.png');
             } else {
@@ -110,7 +109,7 @@ class UsersController extends AbstractController
             return $this->redirectToRoute('parts_index');
         }
         if (true == $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->redirectToRoute('users_search');
+            return $this->redirectToRoute('parts_index');
         } else {
             return $this->redirectToRoute('registration_user');
 
@@ -147,6 +146,7 @@ class UsersController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $avatar_img = $form->get('avatar')->getData();
+
 
             if ($_FILES['users']['name']['avatar'] == "") {
                 $user->setAvatar($avatarUser);

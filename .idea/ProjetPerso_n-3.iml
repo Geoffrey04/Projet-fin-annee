@@ -2,8 +2,10 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/egulias/email-validator" />
       <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/knplabs/knp-components" />
       <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/knplabs/knp-paginator-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/swiftmailer/swiftmailer" />
       <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/symfony/framework-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/symfony/http-foundation" />
       <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/symfony/http-kernel" />
@@ -13,6 +15,7 @@
       <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/symfony/options-resolver" />
       <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/symfony/orm-pack" />
       <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/symfony/polyfill-intl-icu" />
+      <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/symfony/polyfill-intl-idn" />
       <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/symfony/polyfill-mbstring" />
       <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/symfony/polyfill-php72" />
       <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/symfony/process" />
@@ -25,6 +28,7 @@
       <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/symfony/security-guard" />
       <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/symfony/security-http" />
       <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/symfony/stopwatch" />
+      <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/symfony/swiftmailer-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/symfony/translation" />
       <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/symfony/twig-bridge" />
       <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/symfony/twig-bundle" />

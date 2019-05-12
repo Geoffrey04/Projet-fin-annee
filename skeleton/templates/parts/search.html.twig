@@ -5,7 +5,7 @@
 {% block body %}
     <h1 id="test_title">Chercher un morceau</h1>
 
-        <div class="formResearch col-form-label">
+        <div class="formResearch col-sm-6">
             {{ form_start(form_T) }}
             {{ form_row(form_T.title) }}
             {{ form_row(form_G.groupe) }}
@@ -17,7 +17,7 @@
 
     <div class="row">
         {% for part in parts %}
-             <div class="col-sm-4 card text-white bg-secondary mb-3" style="margin-top: 10px; border: 2px solid white">
+             <div class="col-sm-4 card border-primary mb-3" style="margin-top: 10px; border: 2px solid white">
                 <a href="/img/sheetmusic_directory/{{ part.pictures }}" data-lightbox="img_search">
                 <img src="/img/sheetmusic_directory/{{ part.pictures }}">
                 </a>
@@ -28,11 +28,11 @@
                         <li class="card-text"><span class="CategoryNamePartsBold">Style : </span>{{ part.styles }}</li>
                         <li class="card-text"><span class="CategoryNamePartsBold">Type : </span>{{ part.type }}</li>
                     </ul>
-                <a href="/img/sheetmusic_directory/{{ part.pictures }}" download="{{ part.title }}-{{ part.groupe }}_by{{ part.author }}">Telecharger</a>
+                <a href="/img/sheetmusic_directory/{{ part.pictures }}" download="{{ part.title }}-{{ part.groupe }}_by_{{ part.author }}" class="card-link">Telecharger</a>
              </div>
         {% endfor %}
     </div>
-<div class="pagination-sm">
+<div class="pagination-sm d-flex justify-content-center">
     {{ knp_pagination_render(parts) }}
 </div>
 {% endblock %}

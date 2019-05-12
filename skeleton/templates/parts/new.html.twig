@@ -7,22 +7,13 @@
     {% if app.user %}
         <div class="row">
             <div class="formView col-sm-9">
+                <p>Les champs avec * sont obligatoires</p>
                 {{ form_start(form) }}
-
-                    {{ form_row(form.title, {'label': 'Titre :', 'attr':
-                    {'placeholder': 'titre de la musique...'}}) }}
-
-                    {{ form_row(form.Groupe, {'label': 'Groupe :', 'attr':
-                    {'placeholder': 'Nom du chanteur ou groupe...'}}) }}
-
-                    {{ form_row(form.styles, {'label': 'Style(s) :', 'attr':
-                    {'placeholder': 'style de musique...'}}) }}
-
-                    {{ form_row(form.type , {'label': 'Type :', 'attr':
-                    {'placeholder': 'Type de morceau...'}}) }}
-
-                    {{ form_row(form.pictures, {'label': 'Image :', 'attr':
-                    {'placeholder': 'image...'}}) }}
+                    {{ form_row(form.title)}}
+                    {{ form_row(form.Groupe) }}
+                    {{ form_row(form.styles)}}
+                    {{ form_row(form.type)}}
+                    {{ form_row(form.pictures)}}
                         <button type="submit" class="btn btn-secondary">Envoyez</button>
                 {{ form_end(form) }}
                     <div>

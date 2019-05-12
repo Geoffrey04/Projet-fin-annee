@@ -3,19 +3,23 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-<div class="row">
-    <div class="formView col-sm-9">
-    {{ form_start(form) }}
-        {{ form_row(form.username) }}
-        {{ form_row(form.password) }}
-        {{ form_row(form.confirm_password) }}
-        {{ form_row(form.mail) }}
-        {{ form_row(form.city) }}
-        {{ form_row(form.age) }}
-        {{ form_row(form.influences) }}
-        {{ form_row(form.styles) }}
-        {{ form_row(form.avatar) }}
-    {{ form_end(form) }}
+    <div class="row">
+        <div class="formView col-sm-9">
+        {% if app.user.id == user.id %}
+        {{ form_start(form) }}
+            {{ form_row(form.username) }}
+            {{ form_row(form.password) }}
+            {{ form_row(form.confirm_password) }}
+            {{ form_row(form.mail) }}
+            {{ form_row(form.city) }}
+            {{ form_row(form.age) }}
+            {{ form_row(form.influences) }}
+            {{ form_row(form.styles) }}
+            {{ form_row(form.avatar) }}
+        {{ form_end(form) }}
+        {% else %}
+         <p>Vous n'êtes pas autorisé à accéder à cette page</p>
+        {% endif %}
     </div>
 </div>
 

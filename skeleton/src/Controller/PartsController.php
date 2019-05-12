@@ -53,10 +53,11 @@ class PartsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $sheet_music = $form->get('pictures')->getData();
-            //dump($sheet_music);
-            $nameSheetMusic = $this->generateUniqueFileName();
-            $sheet_music->move(self::SHEETMUSIC_DIRECTORY, $nameSheetMusic.'.png' );
-            $part->setPictures($sheet_music);
+
+            /*Function generateUniqueFileName -> uploaded pictures have unique name in 'sheetmusic' folder*/
+            $nameSheetMusic = $this->generateUniqueFileName().'.png';
+            $sheet_music->move(self::SHEETMUSIC_DIRECTORY, $nameSheetMusic);
+            $part->setPictures($nameSheetMusic);
             $part->setAuthor($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($part);
@@ -133,7 +134,8 @@ class PartsController extends AbstractController
     public function PartsSearch(Request $request,PartsRepository $partsRepository , PaginatorInterface $paginator) : Response
     {
 
-        $parts = $partsRepository->findAll();
+        $parts = $paginator->paginate($partsRepository->findAll(),
+            $request->query->getInt('page', 1), 6);
 
         $search_t = new SearchPartsTitle() ;
         $SearchFormBy_title = $this->createForm(SearchPartsTitleType::class, $search_t);
@@ -207,11 +209,6 @@ class PartsController extends AbstractController
             }
 
         }
-        else
-            {
-                $parts = $paginator->paginate($partsRepository->findAll(),
-                    $request->query->getInt('page', 1), 6);
-            }
 
         return $this->render('parts\search.html.twig',
             ['parts'=> $parts,

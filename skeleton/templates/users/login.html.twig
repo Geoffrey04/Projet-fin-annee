@@ -1,30 +1,18 @@
 {% extends 'base.html.twig' %}
-
 {% block body %}
-
-
-
     <form action="{{ path('security_connexion') }}" method="post" name="">
-        <div class="formLogin form-group">
+        <div class="formLogin row">
         {% if error %}
             <div><p>Pseudo et/ou mot de passe incorrect !</p></div>
         {% endif %}
+                <div class="col-sm-12">
+                    <label for="username">Pseudo :</label>
+                    <input class="form-control" type="text" placeholder="pseudo" required name="_username" id="username">
 
-
-            <div class="">
-             <label for="username">Pseudo :</label>
-                <input class="form-control" type="text" placeholder="pseudo" required name="_username" id="username">
-            </div>
-            <div class="">
-                <label for="password">Mot de passe :</label>
+                    <label for="password">Mot de passe :</label>
                     <input class="form-control" type="password" placeholder="mot de passe" required name="_password" id="password">
+                    <button type="submit" class="btn btn-primary">Envoyez</button>
+                </div>
             </div>
-            <div class="">
-                <button type="submit">Envoyez</button>
-            </div>
-        </div>
     </form>
-
-
-
 {% endblock %}

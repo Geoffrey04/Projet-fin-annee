@@ -14,7 +14,6 @@
     </div>
 
 
-
     <table class="table">
         <thead>
             <tr>
@@ -31,7 +30,7 @@
 
         <tbody>
         {% for user in users %}
-            <tr id="Mytr" style="">
+            <tr>
                 <td><img class="img_avatar" src="{{ user.avatar }}"></td>
                 <td><a href="#">{{ user.username }}</a></td>
                 <td>{{ user.city }}</td>
@@ -44,7 +43,4 @@
 
     </table>
 
-{% endblock %}
-{% block javascripts %}
-    <script  src="{{ asset('js/app.js') }}"></script>
 {% endblock %}
