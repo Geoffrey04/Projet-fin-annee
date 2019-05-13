@@ -1,38 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UsersController!{% endblock %}
+{% block title %}Hello Admin !{% endblock %}
 
 {% block body %}
-
-    <div class="search_profiles" style="border: 1px solid black;">
-        {{ form_start(form) }}
-        {{ form_row(form.username) }}
-        {{ form_row(form.styles) }}
-        {{ form_row(form.influences) }}
-        <button>Rechercher</button>
-        {{ form_end(form) }}
-    </div>
-
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Avatar/Photo.profil</th>
-                <th>Nom/pseudo</th>
-                <th>Ville</th>
-                <th>Age</th>
-                <th>Styles</th>
-                <th>influences(artistes,groupes)</th>
-
-
-            </tr>
-        </thead>
-
+<div class="row">
+    <div class="col-sm-12 table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Avatar/Photo.profil</th>
+                    <th scope="col">Nom/pseudo</th>
+                    <th scope="col">Ville</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Styles</th>
+                    <th scope="col">influences(artistes,groupes)</th>
+                </tr>
+            </thead>
         <tbody>
+
         {% for user in users %}
-            <tr>
-                <td><img class="img_avatar" src="{{ user.avatar }}"></td>
-                <td><a href="#">{{ user.username }}</a></td>
+            <tr class="table-light">
+                <td><img class="img_avatar" src="../img/avatar_directory/{{ user.avatar }}" alt="image de profil de l'utilisateur"></td>
+                <td><a href="{{ path('edit_urprofile', {'id' : user.id})  }}">{{ user.username }}</a></td>
                 <td>{{ user.city }}</td>
                 <td>{{ user.age }}</td>
                 <td>{{ user.styles }}</td>
@@ -42,5 +31,10 @@
         </tbody>
 
     </table>
+    </div>
+</div>
 
+    <div class="pagination-sm d-flex justify-content-center">
+        {{ knp_pagination_render(users) }}
+    </div>
 {% endblock %}

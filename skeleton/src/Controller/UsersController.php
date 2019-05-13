@@ -30,13 +30,17 @@ class UsersController extends AbstractController
     /**
      * @Route("/users", name="users_index")
      */
-    public function index(UsersRepository $usersRepository): Response
+    public function index(Request $request, UsersRepository $usersRepository, PaginatorInterface $paginator): Response
     {
+
+        $users = $paginator->paginate($usersRepository->findAll(),
+            $request->query->getInt('page',1),6);
 
         return $this->render('users/index.html.twig', [
             'controller_name' => 'UsersController',
-            'users' => $usersRepository->findAll(),
+            'users' => $users,
             'user' => $this->getUser(),
+
 
         ]);
     }
@@ -126,11 +130,13 @@ class UsersController extends AbstractController
 
         //$parts = $paginator->paginate($partsRepository->findPartsByAuthor($user)->getResult(),
         //$request->query->getInt('page',1), 8);
+        $role = $this->getUser()->getRoles();
 
         return $this->render('users/show_profile.html.twig',
             ['users' => $user,
                 'user' => $this->getUser(),
                 'id_user' => $id,
+                'role' => $role[0],
                 'parts' => $partsRepository->findBy(
                     ["author" => $user]
                 )]);

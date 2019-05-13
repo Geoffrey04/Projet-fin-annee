@@ -49,6 +49,10 @@
                         </div>
                 </div>
                         {% endif %}
+
+                        {% if role is defined and role == 'ROLE_ADMIN' %}
+                        <li class="nav-item"><a href="{{ path('users_index') }}" class="nav-link">Liste des comptes</a></li>
+                        {% endif %}
                     </ul>
                 </div>
         </nav>
@@ -61,9 +65,9 @@
 
 <footer>
     <p> © Copyright 2019 </p>
-    <a href="https://lokeshdhakar.com/projects/lightbox2/" target="_blank">Plus de détails sur LightBox2</a>
-    <a href="{{ path('contactForm') }}">Contact</a>
-    <a href="{{ path('aboutdrumsandall') }}">A propos de Drums&all</a>
+    <a href="https://lokeshdhakar.com/projects/lightbox2/" target="_blank" class="text-white">Plus de détails sur LightBox2</a>
+    <a href="{{ path('contactForm') }}" class="text-white">Contact</a>
+    <a href="{{ path('aboutdrumsandall') }}" class="text-white">A propos de Drums&all</a>
 </footer>
 
 {% block javascripts %}
