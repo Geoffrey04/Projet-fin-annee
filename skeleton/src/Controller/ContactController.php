@@ -70,5 +70,4 @@ class ContactController extends AbstractController
             'user' => $this->getUser()
         ]);
     }
-
 }

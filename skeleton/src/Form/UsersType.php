@@ -82,7 +82,6 @@ class UsersType extends AbstractType
                 'label'=>'Avatar/Photo de profil :',
                 'required'=> false,
                 'attr'=>[
-                    'placeholder'=> 'Image de profil...',
                     'accept'=>"image/png, image/jpeg, image/jpg",
                 ]
             ])

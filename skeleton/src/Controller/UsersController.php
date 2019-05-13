@@ -33,17 +33,18 @@ class UsersController extends AbstractController
     public function index(Request $request, UsersRepository $usersRepository, PaginatorInterface $paginator): Response
     {
 
-        $users = $paginator->paginate($usersRepository->findAll(),
+            $users = $paginator->paginate($usersRepository->findAll(),
             $request->query->getInt('page',1),6);
+            $role = $this->getUser()->getRoles();
 
         return $this->render('users/index.html.twig', [
             'controller_name' => 'UsersController',
             'users' => $users,
+            'role' => $role[0],
             'user' => $this->getUser(),
-
-
         ]);
     }
+
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -88,7 +89,7 @@ class UsersController extends AbstractController
     /**
      * @Route("/connexion" , name="security_connexion")
      */
-    public function connexion(Request $request, AuthenticationUtils $authenticationUtils)
+    public function connexion(AuthenticationUtils $authenticationUtils)
     {
         $error = $authenticationUtils->getLastAuthenticationError();
 
@@ -102,7 +103,9 @@ class UsersController extends AbstractController
      * @Route("/logout" , name="logout_user")
      */
     public function logout()
-    {}
+    {
+
+    }
     /**
      * @Route("/", name="check")
      */
@@ -127,9 +130,8 @@ class UsersController extends AbstractController
     {
         /*Create view of user profile with his description and list of his score drums set*/
         $user = $usersRepository->find($id);
-
-        //$parts = $paginator->paginate($partsRepository->findPartsByAuthor($user)->getResult(),
-        //$request->query->getInt('page',1), 8);
+        $parts = $paginator->paginate($partsRepository->findBy(['author'=> $user]),
+        $request->query->getInt('page',1), 2);
         $role = $this->getUser()->getRoles();
 
         return $this->render('users/show_profile.html.twig',
@@ -137,9 +139,8 @@ class UsersController extends AbstractController
                 'user' => $this->getUser(),
                 'id_user' => $id,
                 'role' => $role[0],
-                'parts' => $partsRepository->findBy(
-                    ["author" => $user]
-                )]);
+                'parts' => $parts,
+                ]);
     }
     /**
      * @Route("/profile/{id}/edit_profile", name="edit_urprofile" , methods={"GET" , "POST"})
@@ -155,7 +156,6 @@ class UsersController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $avatar_img = $form->get('avatar')->getData();
-
 
             if ($_FILES['users']['name']['avatar'] == "") {
                 $user->setAvatar($avatarUser);
@@ -206,7 +206,7 @@ class UsersController extends AbstractController
         $SearchFormBy_style = $this->createForm(SearchStylesType::class, $search_s);
         $SearchFormBy_style->handleRequest($request);
         $data2 = $SearchFormBy_style->getData();
-        //dump($data2);
+
 
         if ($SearchFormBy_style->isSubmitted()) {
             if ($data2->getStyles()) {
@@ -221,7 +221,7 @@ class UsersController extends AbstractController
         $SearchFormBy_influences = $this->createForm(SearchInfluencesType::class, $search_i);
         $SearchFormBy_influences->handleRequest($request);
         $data3 = $SearchFormBy_influences->getData();
-        // dump($data3);
+
 
         if ($SearchFormBy_influences->isSubmitted()) {
             if ($data3->getInfluences()) {
@@ -242,6 +242,7 @@ class UsersController extends AbstractController
         ]);
     }
 
+    /*this function create a single name for each file*/
     private function generateUniqueFileName()
     {
         return md5(uniqid());

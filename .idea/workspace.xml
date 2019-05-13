@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0df3e090-b8ee-48fc-a606-44443ed63d12" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/skeleton/translations/KnpPaginatorBundle.fr.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/skeleton/public/js/app.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/skeleton/src/Controller/ContactController.php" beforeDir="false" afterPath="$PROJECT_DIR$/skeleton/src/Controller/ContactController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/skeleton/src/Controller/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/skeleton/src/Controller/UsersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/skeleton/src/Form/UsersType.php" beforeDir="false" afterPath="$PROJECT_DIR$/skeleton/src/Form/UsersType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/skeleton/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/skeleton/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/skeleton/templates/users/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/skeleton/templates/users/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/skeleton/templates/users/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/skeleton/templates/users/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/skeleton/templates/contact/aboutdrumsandall.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/skeleton/templates/contact/aboutdrumsandall.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/skeleton/templates/users/show_profile.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/skeleton/templates/users/show_profile.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,12 +35,12 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/skeleton/src/Controller/PartsController.php">
+        <entry file="file://$PROJECT_DIR$/skeleton/src/Controller/UsersController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3026">
-              <caret line="178" column="58" selection-start-line="177" selection-start-column="16" selection-end-line="178" selection-end-column="58" />
+            <state relative-caret-position="4148">
+              <caret line="244" column="54" selection-start-line="244" selection-start-column="54" selection-end-line="244" selection-end-column="54" />
               <folding>
-                <element signature="e#34#55#0#PHP" expanded="true" />
+                <element signature="e#35#71#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -82,6 +79,7 @@
       <find>filesize</find>
       <find>FormLoginType</find>
       <find>Login</find>
+      <find>role</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -90,8 +88,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/skeleton/src/Entity/SearchUserStyles.php" />
-        <option value="$PROJECT_DIR$/skeleton/src/Entity/SearchPartsType.php" />
         <option value="$PROJECT_DIR$/skeleton/src/Entity/SearchPartsTitle.php" />
         <option value="$PROJECT_DIR$/skeleton/src/Entity/SearchPartsStyles.php" />
         <option value="$PROJECT_DIR$/skeleton/src/Entity/SearchPartsGroup.php" />
@@ -129,18 +125,20 @@
         <option value="$PROJECT_DIR$/skeleton/templates/parts/search.html.twig" />
         <option value="$PROJECT_DIR$/skeleton/templates/users/search.html.twig" />
         <option value="$PROJECT_DIR$/skeleton/public/css/style.css" />
-        <option value="$PROJECT_DIR$/skeleton/src/Form/UsersType.php" />
-        <option value="$PROJECT_DIR$/skeleton/templates/contact/aboutdrumsandall.html.twig" />
         <option value="$PROJECT_DIR$/skeleton/translations/knpPaginatorBundle.fr.yml" />
         <option value="$PROJECT_DIR$/skeleton/vendor/knplabs/knp-paginator-bundle/Resources/views/Pagination/sliding.html.twig" />
         <option value="$PROJECT_DIR$/skeleton/translations/KnpPaginatorBundle.fr.yml" />
         <option value="$PROJECT_DIR$/skeleton/templates/users/index.html.twig" />
+        <option value="$PROJECT_DIR$/skeleton/public/js/app.js" />
+        <option value="$PROJECT_DIR$/skeleton/templates/users/edit.html.twig" />
+        <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/index.php" />
+        <option value="$PROJECT_DIR$/skeleton/templates/contact/aboutdrumsandall.html.twig" />
+        <option value="$PROJECT_DIR$/skeleton/src/Form/UsersType.php" />
+        <option value="$PROJECT_DIR$/skeleton/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/skeleton/templates/users/show_profile.html.twig" />
         <option value="$PROJECT_DIR$/skeleton/src/Controller/UsersController.php" />
-        <option value="$PROJECT_DIR$/skeleton/templates/base.html.twig" />
-        <option value="$PROJECT_DIR$/skeleton/public/js/app.js" />
+        <option value="$PROJECT_DIR$/skeleton/templates/contact/report_form.html.twig" />
         <option value="$PROJECT_DIR$/skeleton/src/Controller/ContactController.php" />
-        <option value="$PROJECT_DIR$/skeleton/templates/users/edit.html.twig" />
       </list>
     </option>
   </component>
@@ -261,6 +259,12 @@
               <item name="ProjetPerso_n-3" type="b2602c69:ProjectViewProjectNode" />
               <item name="ProjetPerso_n-3" type="462c0819:PsiDirectoryNode" />
               <item name="skeleton" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ProjetPerso_n-3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProjetPerso_n-3" type="462c0819:PsiDirectoryNode" />
+              <item name="skeleton" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -268,14 +272,27 @@
               <item name="ProjetPerso_n-3" type="462c0819:PsiDirectoryNode" />
               <item name="skeleton" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Entity" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ProjetPerso_n-3" type="b2602c69:ProjectViewProjectNode" />
               <item name="ProjetPerso_n-3" type="462c0819:PsiDirectoryNode" />
               <item name="skeleton" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Form" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ProjetPerso_n-3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProjetPerso_n-3" type="462c0819:PsiDirectoryNode" />
+              <item name="skeleton" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="contact" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ProjetPerso_n-3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProjetPerso_n-3" type="462c0819:PsiDirectoryNode" />
+              <item name="skeleton" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -353,7 +370,7 @@
       <workItem from="1557385745000" duration="9145000" />
       <workItem from="1557472499698" duration="2803000" />
       <workItem from="1557673856968" duration="13285000" />
-      <workItem from="1557731657530" duration="9176000" />
+      <workItem from="1557731657530" duration="19106000" />
     </task>
     <task id="LOCAL-00001" summary="commit version_1">
       <created>1555358415214</created>
@@ -418,14 +435,22 @@
       <option name="project" value="LOCAL" />
       <updated>1557731931719</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="modif edit/profile/index users">
+      <created>1557747702306</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1557747702306</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="342266000" />
+    <option name="totallyTimeSpent" value="352196000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25113463" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -484,49 +509,10 @@
     <MESSAGE value="modif formulaire / css" />
     <MESSAGE value="modif rubrique contact" />
     <MESSAGE value="ajout éléments footer" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajout éléments footer" />
+    <MESSAGE value="modif edit/profile/index users" />
+    <option name="LAST_COMMIT_MESSAGE" value="modif edit/profile/index users" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/skeleton/vendor/symfony/form/FormInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
-          <caret line="201" column="6" lean-forward="true" selection-start-line="201" selection-start-column="6" selection-end-line="201" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="33" column="60" selection-start-line="33" selection-start-column="60" selection-end-line="33" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton/config/packages/swiftmailer.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton/config/packages/dev/swiftmailer.yaml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton/config/packages/test/swiftmailer.yaml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton/vendor/swiftmailer/swiftmailer/lib/preferences.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton/vendor/swiftmailer/swiftmailer/composer.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/skeleton/vendor/swiftmailer/swiftmailer/.travis.yml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -580,13 +566,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton/templates/contact/contact_form.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="23" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/skeleton/templates/parts/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -629,16 +608,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton/src/Form/UsersType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="24" column="60" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
-          <folding>
-            <element signature="e#28#49#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/skeleton/public/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -646,24 +615,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton/templates/contact/aboutdrumsandall.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/skeleton/templates/parts/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton/templates/users/search.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
-          <caret line="20" column="2" selection-start-line="20" selection-start-column="2" selection-end-line="20" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -733,13 +688,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton/templates/users/show_profile.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="58" column="73" selection-start-line="58" selection-start-column="73" selection-end-line="58" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/skeleton/templates/users/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -749,20 +697,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/skeleton/public/js/app.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton/src/Controller/ContactController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton/templates/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1173">
-          <caret line="69" column="63" selection-start-line="69" selection-start-column="63" selection-end-line="69" selection-end-column="63" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/skeleton/src/Entity/Users.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -781,22 +715,203 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton/src/Controller/UsersController.php">
+    <entry file="file://$PROJECT_DIR$/skeleton/var/cache/dev/validation.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton/config/bundles.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton/config/bootstrap.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2227">
-          <caret line="131" column="48" selection-start-line="131" selection-start-column="48" selection-end-line="131" selection-end-column="48" />
+        <state relative-caret-position="68">
+          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton/vendor/egulias/email-validator/EmailValidator/Validation/DNSCheckValidation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="57" column="21" selection-start-line="57" selection-start-column="21" selection-end-line="57" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton/public/index.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="26" column="54" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton/templates/contact/aboutdrumsandall.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
           <folding>
-            <element signature="e#35#71#0#PHP" expanded="true" />
+            <element signature="e#275#281#0#HTML" expanded="true" />
+            <element signature="e#286#292#0#HTML" expanded="true" />
+            <element signature="e#516#522#0#HTML" expanded="true" />
+            <element signature="e#669#675#0#HTML" expanded="true" />
+            <element signature="e#703#709#0#HTML" expanded="true" />
+            <element signature="e#714#720#0#HTML" expanded="true" />
+            <element signature="e#866#872#0#HTML" expanded="true" />
+            <element signature="e#896#902#0#HTML" expanded="true" />
+            <element signature="e#917#923#0#HTML" expanded="true" />
+            <element signature="e#1619#1625#0#HTML" expanded="true" />
+            <element signature="e#1654#1660#0#HTML" expanded="true" />
+            <element signature="e#1664#1670#0#HTML" expanded="true" />
+            <element signature="e#1688#1694#0#HTML" expanded="true" />
+            <element signature="e#1698#1704#0#HTML" expanded="true" />
+            <element signature="e#1717#1723#0#HTML" expanded="true" />
+            <element signature="e#1729#1735#0#HTML" expanded="true" />
+            <element signature="e#1752#1758#0#HTML" expanded="true" />
+            <element signature="e#1839#1845#0#HTML" expanded="true" />
+            <element signature="e#2082#2088#0#HTML" expanded="true" />
+            <element signature="e#2199#2205#0#HTML" expanded="true" />
+            <element signature="e#3576#3582#0#HTML" expanded="true" />
+            <element signature="e#3693#3699#0#HTML" expanded="true" />
+            <element signature="e#3915#3921#0#HTML" expanded="true" />
+            <element signature="e#4032#4038#0#HTML" expanded="true" />
+            <element signature="e#4515#4521#0#HTML" expanded="true" />
+            <element signature="e#4632#4638#0#HTML" expanded="true" />
+            <element signature="e#5090#5096#0#HTML" expanded="true" />
+            <element signature="e#5207#5213#0#HTML" expanded="true" />
+            <element signature="e#5460#5466#0#HTML" expanded="true" />
+            <element signature="e#5577#5583#0#HTML" expanded="true" />
+            <element signature="e#5902#5908#0#HTML" expanded="true" />
+            <element signature="e#6019#6025#0#HTML" expanded="true" />
+            <element signature="e#6142#6148#0#HTML" expanded="true" />
+            <element signature="e#6259#6265#0#HTML" expanded="true" />
+            <element signature="e#7094#7100#0#HTML" expanded="true" />
+            <element signature="e#9327#9333#0#HTML" expanded="true" />
+            <element signature="e#10239#10245#0#HTML" expanded="true" />
+            <element signature="e#11557#11563#0#HTML" expanded="true" />
+            <element signature="e#13200#13206#0#HTML" expanded="true" />
+            <element signature="e#13268#13274#0#HTML" expanded="true" />
+            <element signature="e#13730#13736#0#HTML" expanded="true" />
+            <element signature="e#13936#13942#0#HTML" expanded="true" />
+            <element signature="e#14058#14064#0#HTML" expanded="true" />
+            <element signature="e#14673#14679#0#HTML" expanded="true" />
+            <element signature="e#14757#14763#0#HTML" expanded="true" />
+            <element signature="e#15021#15027#0#HTML" expanded="true" />
+            <element signature="e#15458#15464#0#HTML" expanded="true" />
+            <element signature="e#15567#15573#0#HTML" expanded="true" />
+            <element signature="e#15691#15697#0#HTML" expanded="true" />
+            <element signature="e#15812#15818#0#HTML" expanded="true" />
+            <element signature="e#16051#16057#0#HTML" expanded="true" />
+            <element signature="e#16377#16383#0#HTML" expanded="true" />
+            <element signature="e#16868#16874#0#HTML" expanded="true" />
+            <element signature="e#17316#17322#0#HTML" expanded="true" />
+            <element signature="e#17410#17416#0#HTML" expanded="true" />
+            <element signature="e#18365#18371#0#HTML" expanded="true" />
+            <element signature="e#18732#18738#0#HTML" expanded="true" />
+            <element signature="e#18749#18755#0#HTML" expanded="true" />
+            <element signature="e#19160#19166#0#HTML" expanded="true" />
+            <element signature="e#20006#20012#0#HTML" expanded="true" />
+            <element signature="e#20029#20035#0#HTML" expanded="true" />
+            <element signature="e#21746#21752#0#HTML" expanded="true" />
+            <element signature="e#21863#21869#0#HTML" expanded="true" />
+            <element signature="e#22351#22357#0#HTML" expanded="true" />
+            <element signature="e#22894#22900#0#HTML" expanded="true" />
+            <element signature="e#23256#23262#0#HTML" expanded="true" />
+            <element signature="e#23373#23379#0#HTML" expanded="true" />
+            <element signature="e#23490#23496#0#HTML" expanded="true" />
+            <element signature="e#24404#24410#0#HTML" expanded="true" />
+            <element signature="e#24931#24937#0#HTML" expanded="true" />
+            <element signature="e#25437#25443#0#HTML" expanded="true" />
+            <element signature="e#26320#26326#0#HTML" expanded="true" />
+            <element signature="e#26998#27004#0#HTML" expanded="true" />
+            <element signature="e#27983#27989#0#HTML" expanded="true" />
+            <element signature="e#28389#28395#0#HTML" expanded="true" />
+            <element signature="e#29078#29084#0#HTML" expanded="true" />
+            <element signature="e#29618#29624#0#HTML" expanded="true" />
+            <element signature="e#29689#29695#0#HTML" expanded="true" />
+            <element signature="e#30238#30244#0#HTML" expanded="true" />
+            <element signature="e#30433#30439#0#HTML" expanded="true" />
+            <element signature="e#30844#30850#0#HTML" expanded="true" />
+            <element signature="e#31283#31289#0#HTML" expanded="true" />
+            <element signature="e#31440#31446#0#HTML" expanded="true" />
+            <element signature="e#31557#31563#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton/templates/users/search.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="49" selection-start-line="49" selection-end-line="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton/templates/users/show_profile.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="77" column="38" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton/templates/contact/contact_form.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="25" selection-end-line="23" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton/templates/contact/report_form.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton/src/Controller/ContactController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="71" column="5" selection-start-line="71" selection-start-column="5" selection-end-line="71" selection-end-column="5" />
+          <folding>
+            <element signature="e#36#59#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/skeleton/src/Controller/PartsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3026">
-          <caret line="178" column="58" selection-start-line="177" selection-start-column="16" selection-end-line="178" selection-end-column="58" />
+        <state relative-caret-position="-122">
+          <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
           <folding>
             <element signature="e#34#55#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton/templates/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="125" selection-start-line="31" selection-start-column="125" selection-end-line="31" selection-end-column="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton/src/Form/UsersType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="83" column="25" selection-start-line="83" selection-start-column="25" selection-end-line="83" selection-end-column="25" />
+          <folding>
+            <element signature="e#28#49#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton/src/Controller/UsersController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4148">
+          <caret line="244" column="54" selection-start-line="244" selection-start-column="54" selection-end-line="244" selection-end-column="54" />
+          <folding>
+            <element signature="e#35#71#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

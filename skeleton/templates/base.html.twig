@@ -45,12 +45,12 @@
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">Mon Compte</button>
                         <div class="dropdown-menu">
                             <li class="nav-item"> <a href="{{ path('edit_urprofile', {'id' : user.id}) }}" class="dropdown-item">Modifier mes informations</a></li>
-                            <li class="nav-item">  <a href="{{ path('user_profile', {'id' : user.id}) }}" class="dropdown-item">Voir Mon Profil</a></li>
+                            <li class="nav-item">  <a href="{{ path('user_profile', {'id' : user.id}) }}" class="dropdown-item">Voir mon profil</a></li>
                         </div>
                 </div>
                         {% endif %}
 
-                        {% if role is defined and role == 'ROLE_ADMIN' %}
+                        {% if app.user == 'admin' %}
                         <li class="nav-item"><a href="{{ path('users_index') }}" class="nav-link">Liste des comptes</a></li>
                         {% endif %}
                     </ul>
@@ -67,12 +67,12 @@
     <p> © Copyright 2019 </p>
     <a href="https://lokeshdhakar.com/projects/lightbox2/" target="_blank" class="text-white">Plus de détails sur LightBox2</a>
     <a href="{{ path('contactForm') }}" class="text-white">Contact</a>
-    <a href="{{ path('aboutdrumsandall') }}" class="text-white">A propos de Drums&all</a>
+    <a href="{{ path('aboutdrumsandall') }}" class="text-white">Mentions légales/CGU</a>
 </footer>
 
 {% block javascripts %}
-<script src="../../js/lightbox2/dist/js/lightbox-plus-jquery.js" type="text/javascript"></script>
-<script src="{{ asset('js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
+<script src="../../js/lightbox2/dist/js/lightbox-plus-jquery.js"></script>
+<script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 {% endblock %}
 </body>
 </html>
