@@ -5,9 +5,13 @@
 {% block body %}
 <div class="row">
     <div class="formView col-sm-6">
+        <p class="text-info text-center">/!\ Limite de la recherche à 1 catégorie par recherche</p>
+        <p class="text-center">Chercher par :</p>
         {{ form_start(form_U) }}
         {{ form_row(form_U.username) }}
+        <p class="text-center">ou</p>
         {{ form_row(form_S.styles) }}
+        <p class="text-center">ou</p>
         {{  form_row(form_I.influences) }}
         <button class="btn btn-secondary">Rechercher</button>
         {{ form_end(form_U) }}

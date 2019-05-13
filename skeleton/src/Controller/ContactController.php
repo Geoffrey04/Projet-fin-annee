@@ -62,4 +62,15 @@ class ContactController extends AbstractController
             'user' => $this->getUser()
         ] );
     }
+
+    /**
+     * @Route("/aboutDrums&all", name="aboutdrumsandall")
+     */
+    public function aboutDrumsandall() : Response
+    {
+       return $this->render('contact/aboutdrumsandall.html.twig', [
+            'user' => $this->getUser()
+        ]);
+    }
+
 }

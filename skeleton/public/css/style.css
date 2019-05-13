@@ -19,6 +19,8 @@ footer {
     position: relative;
     background-color: #2C3E50;
     color : whitesmoke;
+    display: flex;
+    justify-content: space-between;
 }
 
 h1,h2 {
@@ -104,21 +106,13 @@ label.required:before {
     border-left: none;
     border-radius: 1vw;
     padding: 15px;
-    width: 100%;
+    width: 86%;
     margin: auto auto 5% auto ;
     box-shadow: 10px 5px 5px gray;
 }
 
-.formResearch {
-    border: 1px solid #2C3E50 ;
-    border-radius: 1vw;
-    padding: 15px;
-    width: 86%;
-    margin: auto;
 
-}
-
-.formResearch > button {
+.formView > button {
     display: block;
     align-items: center;
     margin: auto;

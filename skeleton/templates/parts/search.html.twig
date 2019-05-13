@@ -5,12 +5,15 @@
 {% block body %}
     <h1 id="test_title">Chercher un morceau</h1>
 
-        <div class="formResearch col-sm-6">
+        <div class="formView col-sm-6">
             {{ form_start(form_T) }}
+            <p class="text-info text-center">/!\ Limite de la recherche à 1 catégorie par recherche</p>
+            <p class="text-center">Chercher par :</p>
             {{ form_row(form_T.title) }}
             {{ form_row(form_G.groupe) }}
-            {{ form_row(form_A.author) }}
             {{ form_row(form_S.styles) }}
+            <p class="text-center">Classer par :</p>
+            {{ form_row(form_A.author) }}
             {{ form_row(form_Type.type) }}
              <button class="btn btn-secondary">Chercher</button>
         </div>

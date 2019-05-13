@@ -119,10 +119,13 @@ class UsersController extends AbstractController
      * @return Response
      * @Route("/profile/{id}/show_profile" , name="user_profile" , methods={"GET"})
      */
-    public function profile_user($id, PartsRepository $partsRepository, UsersRepository $usersRepository): Response
+    public function profile_user($id,Request $request, PartsRepository $partsRepository, UsersRepository $usersRepository , PaginatorInterface $paginator): Response
     {
         /*Create view of user profile with his description and list of his score drums set*/
         $user = $usersRepository->find($id);
+
+        //$parts = $paginator->paginate($partsRepository->findPartsByAuthor($user)->getResult(),
+        //$request->query->getInt('page',1), 8);
 
         return $this->render('users/show_profile.html.twig',
             ['users' => $user,
@@ -176,10 +179,22 @@ class UsersController extends AbstractController
      */
     public function search(Request $request, UsersRepository $usersRepository , PaginatorInterface $paginator): Response
     {
+        $users = $paginator->paginate($usersRepository->findAll(), $request->query->getInt('page', 1), 5);
+
         $search_u = new SearchUsername();
         $SearchFormBy_username = $this->createForm(SearchUsernameType::class, $search_u);
         $SearchFormBy_username->handleRequest($request);
         $data = $SearchFormBy_username->getData();
+
+        if ($SearchFormBy_username->isSubmitted()) {
+            if ($data->getUsername()) {
+                $search_u->setSearchUsername($data->getUsername());
+                $users = $paginator->paginate($usersRepository->FindUserByName($search_u)->getResult(),
+                    $request->query->getInt('page' , 1), 5
+                );
+
+            }
+        }
 
         $search_s = new SearchUserStyles();
         $SearchFormBy_style = $this->createForm(SearchStylesType::class, $search_s);
@@ -187,42 +202,27 @@ class UsersController extends AbstractController
         $data2 = $SearchFormBy_style->getData();
         //dump($data2);
 
-        $search_i = new SearchUserInfluences();
-        $SearchFormBy_influences = $this->createForm(SearchInfluencesType::class, $search_i);
-        $SearchFormBy_influences->handleRequest($request);
-        $data3 = $SearchFormBy_influences->getData();
-        // dump($data3);
-        $users = $paginator->paginate($usersRepository->findAll(), $request->query->getInt('page', 1), 5);
-
-        if ($SearchFormBy_username->isSubmitted()) {
-            if ($data->getUsername()) {
-                $search_u->setSearchUsername($data->getUsername());
-                 $users = $paginator->paginate($usersRepository->FindUserByName($search_u)->getResult(),
-                    $request->query->getInt('page' , 1), 5
-                );
-               // if (!empty($users)) {
-               //     $users = array_merge($users);
-               // }
-            }
-        }
         if ($SearchFormBy_style->isSubmitted()) {
             if ($data2->getStyles()) {
                 $search_s->setSearchStyle($data2->getStyles());
                 $users = $paginator->paginate($usersRepository->FindUserByStyles($search_s)->getResult(),
                     $request->query->getInt('page', 1), 5);
-                //if (!empty($users)) {
-                //    $users = array_merge($users);
-               // }
+
             }
         }
+
+        $search_i = new SearchUserInfluences();
+        $SearchFormBy_influences = $this->createForm(SearchInfluencesType::class, $search_i);
+        $SearchFormBy_influences->handleRequest($request);
+        $data3 = $SearchFormBy_influences->getData();
+        // dump($data3);
+
         if ($SearchFormBy_influences->isSubmitted()) {
             if ($data3->getInfluences()) {
                 $search_i->setSearchInfluence($data3->getInfluences());
                 $users = $paginator->paginate($usersRepository->FindUserByInfluences($search_i)->getResult(),
                     $request->query->getInt('page', 1),6);
-                // if (!empty($users)) {
-               //    $users = array_merge($users);
-               //  }
+
             }
         }
 
